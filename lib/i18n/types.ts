@@ -1,0 +1,111 @@
+// Type definitions for i18n system
+export type Locale = "bn" | "en" | "ar"
+
+export const LOCALES: Locale[] = ["bn", "en", "ar"]
+export const DEFAULT_LOCALE: Locale = "bn"
+
+export interface Translations {
+  [key: string]: string | Translations
+}
+
+export interface I18nConfig {
+  locales: Locale[]
+  defaultLocale: Locale
+  localeDetection: boolean
+}
+
+export const i18nConfig: I18nConfig = {
+  locales: LOCALES,
+  defaultLocale: DEFAULT_LOCALE,
+  localeDetection: true,
+}
+
+export type TranslationKeys =
+  | "common.welcome"
+  | "common.appName"
+  | "common.description"
+  | "common.selectLanguage"
+  | "common.loading"
+  | "common.error"
+  | "common.success"
+  | "common.cancel"
+  | "common.confirm"
+  | "common.save"
+  | "common.delete"
+  | "common.edit"
+  | "common.close"
+  | "common.back"
+  | "common.next"
+  | "common.previous"
+  | "common.submit"
+  | "common.search"
+  | "common.filter"
+  | "common.reset"
+  | "common.noData"
+  | "navigation.home"
+  | "navigation.about"
+  | "navigation.services"
+  | "navigation.contact"
+  | "navigation.language"
+  | "navigation.dashboard"
+  | "navigation.profile"
+  | "navigation.settings"
+  | "navigation.logout"
+  | "navigation.login"
+  | "auth.login.title"
+  | "auth.login.email"
+  | "auth.login.password"
+  | "auth.login.emailPlaceholder"
+  | "auth.login.passwordPlaceholder"
+  | "auth.login.submit"
+  | "auth.login.forgotPassword"
+  | "auth.login.noAccount"
+  | "auth.login.signUp"
+  | "auth.login.invalidCredentials"
+  | "auth.login.fillAllFields"
+  | "auth.login.testCredentials"
+  | "auth.login.admin"
+  | "auth.login.user"
+  | "auth.logout.title"
+  | "auth.logout.confirm"
+  | "auth.logout.success"
+  | "dashboard.admin.title"
+  | "dashboard.admin.totalUsers"
+  | "dashboard.admin.activeSessions"
+  | "dashboard.admin.adminUsers"
+  | "dashboard.admin.adminInfo"
+  | "dashboard.admin.loggedInAs"
+  | "dashboard.admin.adminOnly"
+  | "dashboard.user.title"
+  | "dashboard.user.profile"
+  | "dashboard.user.email"
+  | "dashboard.user.role"
+  | "dashboard.user.userId"
+  | "hero.title"
+  | "hero.subtitle"
+  | "hero.cta"
+  | "about.title"
+  | "about.supportedLanguages"
+  | "about.technicalFeatures"
+  | "about.features.typeSafe"
+  | "about.features.localStorage"
+  | "about.features.rtl"
+  | "about.features.rbac"
+  | "about.features.seo"
+  | "about.features.production"
+  | "about.features.stack"
+  | "about.features.ui-experience"
+  | "errors.404"
+  | "errors.401"
+  | "errors.403"
+  | "errors.500"
+  | "errors.generic"
+  | "common.toggleTheme"
+  | "theme.light"
+  | "theme.dark"
+  | "theme.system"
+  | "sidebar.adminPanel"
+  | "sidebar.userPanel"
+  | "sidebar.menu"
+  | "sidebar.theme"
+  | "sidebar.language"

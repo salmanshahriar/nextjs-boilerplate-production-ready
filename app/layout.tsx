@@ -1,0 +1,403 @@
+import type React from "react"
+import type { Metadata } from "next"
+import { Geist, Geist_Mono } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
+import { LanguageProvider } from "@/lib/i18n/language-context"
+import { AuthProvider } from "@/lib/auth/auth-context"
+import { ThemeProvider } from "@/components/theme-provider"
+import Header from "@/components/common/header"
+import Script from "next/script"
+import "./globals.css"
+
+const geist = Geist({ subsets: ["latin"] })
+
+// ============================================
+// DYNAMIC CONFIGURATION OBJECT
+// ============================================
+const siteConfig = {
+  // Application Information
+  appName: "",
+  appType: "", // e.g., "SaaS Platform", "LMS", "EdTech Platform", "Management System", "Web Application"
+  tagline: "",
+
+  // Business/Organization Information
+  organization: {
+    name: "",
+    legalName: "",
+    url: "",
+    logo: "",
+    description: "",
+    foundingDate: "",
+    email: "",
+    phone: "",
+    address: {
+      street: "",
+      city: "",
+      region: "",
+      postalCode: "",
+      country: "",
+      countryCode: "",
+    },
+  },
+
+  // Contact & Support
+  contact: {
+    supportEmail: "",
+    salesEmail: "",
+    phoneNumber: "",
+  },
+
+  // URLs & Domain
+  domain: "",
+  canonicalPath: "/",
+
+  // Social Media & Online Presence
+  social: {
+    facebook: "",
+    twitter: "",
+    linkedin: "",
+    instagram: "",
+    youtube: "",
+    github: "",
+    // Add or remove as needed
+  },
+
+  // SEO & Meta
+  title: "Next.js i18n & Role-Based Access Boilerplate",
+  description:
+    "Production-ready Next.js boilerplate with multi-language support (i18n) and role-based access control (RBAC)",
+  locale: "en_US",
+  language: "en-US",
+
+  // Keywords (for your specific use case)
+  keywords: ["", "", ""],
+
+  // Features (what your app offers)
+  features: ["", "", ""],
+
+  // Target Audience
+  audience: "", // e.g., "Students", "Businesses", "Educators", "Enterprise Teams"
+
+  // Images
+  images: {
+    og: "", // Open Graph image
+    logo: "",
+    ogWidth: 1200,
+    ogHeight: 630,
+  },
+
+  // Theme Colors
+  theme: {
+    dark: "#000000",
+    light: "#ffffff",
+  },
+
+  // Icons
+  icons: {
+    favicon: "/favicon.ico",
+    svg: "/icon.svg",
+    appleTouchIcon: "/apple-touch-icon.png",
+  },
+
+  // Manifest
+  manifest: "/manifest.json",
+
+  // Application Category
+  applicationCategory: "", // e.g., "EducationalApplication", "BusinessApplication", "LifestyleApplication"
+
+  // Pricing (if applicable)
+  pricing: {
+    model: "", // e.g., "Freemium", "Subscription", "One-time Purchase", "Free"
+    currency: "USD",
+    minPrice: "",
+    maxPrice: "",
+  },
+}
+
+// ============================================
+// GENERATE METADATA FROM CONFIG
+// ============================================
+export const metadata: Metadata = {
+  title: siteConfig.appName
+    ? `${siteConfig.appName} | ${siteConfig.tagline}`
+    : siteConfig.title,
+  description: siteConfig.description,
+  keywords: siteConfig.keywords.filter(Boolean),
+  authors: siteConfig.organization.name
+    ? [{ name: siteConfig.organization.name, url: siteConfig.organization.url }]
+    : undefined,
+  creator: siteConfig.organization.name || undefined,
+  publisher: siteConfig.organization.name || undefined,
+  formatDetection: { email: true, address: true, telephone: true },
+  metadataBase: siteConfig.domain ? new URL(siteConfig.domain) : undefined,
+  alternates: siteConfig.domain
+    ? { canonical: siteConfig.canonicalPath }
+    : undefined,
+  applicationName: siteConfig.appName || undefined,
+  category: siteConfig.applicationCategory || undefined,
+  openGraph: siteConfig.appName
+    ? {
+        type: "website",
+        locale: siteConfig.locale,
+        url: siteConfig.domain,
+        title: `${siteConfig.appName} | ${siteConfig.tagline}`,
+        description: siteConfig.description,
+        siteName: siteConfig.appName,
+        images: siteConfig.images.og
+          ? [
+              {
+                url: siteConfig.images.og,
+                width: siteConfig.images.ogWidth,
+                height: siteConfig.images.ogHeight,
+                alt: `${siteConfig.appName} - ${siteConfig.tagline}`,
+              },
+            ]
+          : undefined,
+      }
+    : undefined,
+  twitter: siteConfig.social.twitter
+    ? {
+        card: "summary_large_image",
+        title: siteConfig.appName
+          ? `${siteConfig.appName} | ${siteConfig.tagline}`
+          : siteConfig.title,
+        description: siteConfig.description,
+        images: siteConfig.images.og ? [siteConfig.images.og] : undefined,
+        creator: siteConfig.social.twitter,
+      }
+    : undefined,
+  icons: {
+    icon: [
+      { url: siteConfig.icons.favicon, sizes: "any" },
+      { url: siteConfig.icons.svg, type: "image/svg+xml" },
+    ],
+    apple: siteConfig.icons.appleTouchIcon,
+  },
+  manifest: siteConfig.manifest,
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Responsive Meta */}
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5"
+        />
+
+        {/* Favicon & Icons */}
+        <link rel="icon" href={siteConfig.icons.favicon} sizes="any" />
+        <link rel="icon" href={siteConfig.icons.svg} type="image/svg+xml" />
+        <link rel="apple-touch-icon" href={siteConfig.icons.appleTouchIcon} />
+
+        {/* Theme Color */}
+        <meta
+          name="theme-color"
+          content={siteConfig.theme.dark}
+          media="(prefers-color-scheme: dark)"
+        />
+        <meta
+          name="theme-color"
+          content={siteConfig.theme.light}
+          media="(prefers-color-scheme: light)"
+        />
+
+        {/* SEO Meta */}
+        {siteConfig.description && (
+          <meta name="description" content={siteConfig.description} />
+        )}
+        {siteConfig.domain && (
+          <link
+            rel="canonical"
+            href={`${siteConfig.domain}${siteConfig.canonicalPath}`}
+          />
+        )}
+      </head>
+      <body className={`${geist.className} font-sans antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthProvider>
+            <LanguageProvider>
+              <div className="flex flex-col min-h-screen">
+                <Header />
+                <main className="flex-1 w-full">{children}</main>
+              </div>
+            </LanguageProvider>
+          </AuthProvider>
+        </ThemeProvider>
+        <Analytics />
+
+        {/* Organization Schema - Only render if organization info is filled */}
+        {siteConfig.organization.name && (
+          <Script
+            id="schema-organization"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "@id": `${siteConfig.domain}/#organization`,
+                name: siteConfig.organization.name,
+                legalName:
+                  siteConfig.organization.legalName ||
+                  siteConfig.organization.name,
+                url: siteConfig.domain,
+                logo: siteConfig.images.logo
+                  ? `${siteConfig.domain}${siteConfig.images.logo}`
+                  : undefined,
+                description: siteConfig.organization.description,
+                email: siteConfig.organization.email || undefined,
+                telephone: siteConfig.organization.phone || undefined,
+                foundingDate: siteConfig.organization.foundingDate || undefined,
+                sameAs: Object.values(siteConfig.social).filter(Boolean),
+                address: siteConfig.organization.address.city
+                  ? {
+                      "@type": "PostalAddress",
+                      streetAddress: siteConfig.organization.address.street,
+                      addressLocality: siteConfig.organization.address.city,
+                      addressRegion: siteConfig.organization.address.region,
+                      postalCode: siteConfig.organization.address.postalCode,
+                      addressCountry:
+                        siteConfig.organization.address.countryCode,
+                    }
+                  : undefined,
+              }),
+            }}
+          />
+        )}
+
+        {/* WebApplication Schema - Only render if app info is filled */}
+        {siteConfig.appName && (
+          <Script
+            id="schema-webapp"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type":
+                  siteConfig.applicationCategory === "EducationalApplication"
+                    ? "EducationalApplication"
+                    : "SoftwareApplication",
+                "@id": `${siteConfig.domain}/#webapp`,
+                name: siteConfig.appName,
+                description: siteConfig.description,
+                url: siteConfig.domain,
+                applicationCategory:
+                  siteConfig.applicationCategory || "WebApplication",
+                applicationSubCategory: siteConfig.appType || undefined,
+                operatingSystem: "Web Browser",
+                offers: siteConfig.pricing.model
+                  ? {
+                      "@type": "Offer",
+                      price: siteConfig.pricing.minPrice || "0",
+                      priceCurrency: siteConfig.pricing.currency,
+                      priceSpecification: siteConfig.pricing.maxPrice
+                        ? {
+                            "@type": "PriceSpecification",
+                            minPrice: siteConfig.pricing.minPrice,
+                            maxPrice: siteConfig.pricing.maxPrice,
+                            priceCurrency: siteConfig.pricing.currency,
+                          }
+                        : undefined,
+                    }
+                  : undefined,
+                aggregateRating: undefined, // Can be added later with actual ratings
+                author: siteConfig.organization.name
+                  ? {
+                      "@type": "Organization",
+                      "@id": `${siteConfig.domain}/#organization`,
+                      name: siteConfig.organization.name,
+                    }
+                  : undefined,
+                featureList: siteConfig.features.filter(Boolean),
+                screenshot: siteConfig.images.og
+                  ? `${siteConfig.domain}${siteConfig.images.og}`
+                  : undefined,
+              }),
+            }}
+          />
+        )}
+
+        {/* WebSite Schema - Only render if domain is set */}
+        {siteConfig.domain && (
+          <Script
+            id="schema-website"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "@id": `${siteConfig.domain}/#website`,
+                url: siteConfig.domain,
+                name: siteConfig.appName || siteConfig.title,
+                description: siteConfig.description,
+                publisher: siteConfig.organization.name
+                  ? {
+                      "@id": `${siteConfig.domain}/#organization`,
+                    }
+                  : undefined,
+                potentialAction: {
+                  "@type": "SearchAction",
+                  target: `${siteConfig.domain}/search?q={search_term_string}`,
+                  "query-input": "required name=search_term_string",
+                },
+                inLanguage: siteConfig.language,
+              }),
+            }}
+          />
+        )}
+
+        {/* Service Schema - For SaaS/Service-based applications */}
+        {siteConfig.appType &&
+          siteConfig.appType.toLowerCase().includes("saas") && (
+            <Script
+              id="schema-service"
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "Service",
+                  "@id": `${siteConfig.domain}/#service`,
+                  name: siteConfig.appName,
+                  description: siteConfig.description,
+                  provider: siteConfig.organization.name
+                    ? {
+                        "@id": `${siteConfig.domain}/#organization`,
+                      }
+                    : undefined,
+                  serviceType: siteConfig.appType,
+                  areaServed: "Worldwide",
+                  availableChannel: {
+                    "@type": "ServiceChannel",
+                    serviceUrl: siteConfig.domain,
+                  },
+                }),
+              }}
+            />
+          )}
+      </body>
+    </html>
+  )
+}
