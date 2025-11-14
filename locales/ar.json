@@ -1,5 +1,6 @@
 {
   "common": {
+    "appName": "قالب Next.js",
     "selectLanguage": "اختر اللغة",
     "loading": "جاري التحميل...",
     "error": "خطأ",
@@ -85,6 +86,7 @@
   },
   "about": {
     "title": "معلومات عنا",
+    "description": "معلومات عنّا",
     "features": {
       "typeSafe": "i18n آمن للنوع مع TypeScript",
       "rbac": "التحكم في الوصول القائم على الأدوار (المستخدم والمسؤول)",

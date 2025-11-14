@@ -44,11 +44,7 @@ export default function AboutPage() {
       icon: "🔍",
       title: "SEO Optimized",
       description: t("about.features.seo"),
-      details: [
-        "Dynamic metadata",
-        "Detailed SEO",
-        "Performance optimized",
-      ],
+      details: ["Dynamic metadata", "Detailed SEO", "Performance optimized"],
     },
     {
       icon: "👨‍💻",
@@ -98,20 +94,20 @@ export default function AboutPage() {
               ) : (
                 <div className="flex gap-3 mt-2">
                   <a
+                    href="https://github.com/salmanshahriar/nextjs-boilerplate-production-ready"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors text-sm font-medium"
+                  >
+                    💻 Source code (GitHub)
+                  </a>
+                  <a
                     href="https://salmanshahriar.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors text-sm font-medium"
                   >
-                    🌐 Website
-                  </a>
-                  <a
-                    href="https://github.com/salmanshahriar"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors text-sm font-medium"
-                  >
-                    💻 GitHub
+                    🌐 My Website
                   </a>
                 </div>
               )}

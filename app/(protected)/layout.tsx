@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { AppSidebar } from "@/components/common/app-sidebar"
+import { AppSidebar } from "@/components/layout/app-sidebar"
 import { useAuth } from "@/lib/auth/auth-context"
 
 export default function ProtectedLayout({

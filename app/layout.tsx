@@ -1,121 +1,92 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Geist } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { LanguageProvider } from "@/lib/i18n/language-context"
 import { AuthProvider } from "@/lib/auth/auth-context"
 import { ThemeProvider } from "@/components/theme-provider"
-import Header from "@/components/common/header"
+
 import Script from "next/script"
 import "./globals.css"
+import ClientLayout from "@/components/layout/client-layout"
+import seoData from "./SEO/app-main-meta-data.json"
+
+interface SiteConfig {
+  appName: string
+  appType: string
+  tagline: string
+  organization: {
+    name: string
+    legalName: string
+    url: string
+    logo: string
+    description: string
+    foundingDate: string
+    email: string
+    phone: string
+    address: {
+      street: string
+      city: string
+      region: string
+      postalCode: string
+      country: string
+      countryCode: string
+    }
+  }
+  contact: {
+    supportEmail: string
+    salesEmail: string
+    phoneNumber: string
+  }
+  domain: string
+  canonicalPath: string
+  social: {
+    facebook: string
+    twitter: string
+    linkedin: string
+    instagram: string
+    youtube: string
+    github: string
+  }
+  title: string
+  description: string
+  locale: string
+  language: string
+  keywords: string[]
+  features: string[]
+  audience: string
+  images: {
+    og: string
+    logo: string
+    ogWidth: number
+    ogHeight: number
+  }
+  theme: {
+    dark: string
+    light: string
+  }
+  icons: {
+    favicon: string
+    svg: string
+    appleTouchIcon: string
+  }
+  manifest: string
+  applicationCategory: string
+  pricing: {
+    model: string
+    currency: string
+    minPrice: string
+    maxPrice: string
+  }
+}
 
 const geist = Geist({ subsets: ["latin"] })
 
-// ============================================
-// DYNAMIC CONFIGURATION OBJECT
-// ============================================
-const siteConfig = {
-  // Application Information
-  appName: "",
-  appType: "", // e.g., "SaaS Platform", "LMS", "EdTech Platform", "Management System", "Web Application"
-  tagline: "",
-
-  // Business/Organization Information
-  organization: {
-    name: "",
-    legalName: "",
-    url: "",
-    logo: "",
-    description: "",
-    foundingDate: "",
-    email: "",
-    phone: "",
-    address: {
-      street: "",
-      city: "",
-      region: "",
-      postalCode: "",
-      country: "",
-      countryCode: "",
-    },
-  },
-
-  // Contact & Support
-  contact: {
-    supportEmail: "",
-    salesEmail: "",
-    phoneNumber: "",
-  },
-
-  // URLs & Domain
-  domain: "",
-  canonicalPath: "/",
-
-  // Social Media & Online Presence
-  social: {
-    facebook: "",
-    twitter: "",
-    linkedin: "",
-    instagram: "",
-    youtube: "",
-    github: "",
-    // Add or remove as needed
-  },
-
-  // SEO & Meta
-  title: "Next.js i18n & Role-Based Access Boilerplate",
-  description:
-    "Production-ready Next.js boilerplate with multi-language support (i18n) and role-based access control (RBAC)",
-  locale: "en_US",
-  language: "en-US",
-
-  // Keywords (for your specific use case)
-  keywords: ["", "", ""],
-
-  // Features (what your app offers)
-  features: ["", "", ""],
-
-  // Target Audience
-  audience: "", // e.g., "Students", "Businesses", "Educators", "Enterprise Teams"
-
-  // Images
-  images: {
-    og: "", // Open Graph image
-    logo: "",
-    ogWidth: 1200,
-    ogHeight: 630,
-  },
-
-  // Theme Colors
-  theme: {
-    dark: "#000000",
-    light: "#ffffff",
-  },
-
-  // Icons
-  icons: {
-    favicon: "/favicon.ico",
-    svg: "/icon.svg",
-    appleTouchIcon: "/apple-touch-icon.png",
-  },
-
-  // Manifest
-  manifest: "/manifest.json",
-
-  // Application Category
-  applicationCategory: "", // e.g., "EducationalApplication", "BusinessApplication", "LifestyleApplication"
-
-  // Pricing (if applicable)
-  pricing: {
-    model: "", // e.g., "Freemium", "Subscription", "One-time Purchase", "Free"
-    currency: "USD",
-    minPrice: "",
-    maxPrice: "",
-  },
-}
+// Type assertion for imported JSON
+const siteConfig = seoData as SiteConfig
 
 // ============================================
-// GENERATE METADATA FROM CONFIG
+// METADATA FOR SEO [Fill the data on SEO.json]
 // ============================================
 export const metadata: Metadata = {
   title: siteConfig.appName
@@ -241,15 +212,14 @@ export default function RootLayout({
           <AuthProvider>
             <LanguageProvider>
               <div className="flex flex-col min-h-screen">
-                <Header />
-                <main className="flex-1 w-full">{children}</main>
+                <ClientLayout>{children}</ClientLayout>
               </div>
             </LanguageProvider>
           </AuthProvider>
         </ThemeProvider>
         <Analytics />
 
-        {/* Organization Schema - Only render if organization info is filled */}
+        {/* Organization Schema - Only render if organization info is filled on app/SEO/app-main-meta-data.json */}
         {siteConfig.organization.name && (
           <Script
             id="schema-organization"
@@ -288,7 +258,7 @@ export default function RootLayout({
           />
         )}
 
-        {/* WebApplication Schema - Only render if app info is filled */}
+        {/* WebApplication Schema - Only render if app info is filled on app/SEO/app-main-meta-data.json */}
         {siteConfig.appName && (
           <Script
             id="schema-webapp"
@@ -340,7 +310,7 @@ export default function RootLayout({
           />
         )}
 
-        {/* WebSite Schema - Only render if domain is set */}
+        {/* WebSite Schema - Only render if domain is set on app/SEO/app-main-meta-data.json */}
         {siteConfig.domain && (
           <Script
             id="schema-website"

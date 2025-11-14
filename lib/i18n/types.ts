@@ -2,7 +2,7 @@
 export type Locale = "bn" | "en" | "ar"
 
 export const LOCALES: Locale[] = ["bn", "en", "ar"]
-export const DEFAULT_LOCALE: Locale = "bn"
+export const DEFAULT_LOCALE: Locale = "en"
 
 export interface Translations {
   [key: string]: string | Translations
@@ -85,6 +85,7 @@ export type TranslationKeys =
   | "hero.subtitle"
   | "hero.cta"
   | "about.title"
+  | "description"
   | "about.supportedLanguages"
   | "about.technicalFeatures"
   | "about.features.typeSafe"

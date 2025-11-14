@@ -27,7 +27,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-export function AppSidebar() {
+export function Sidebar() {
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const [collapsed, setCollapsed] = React.useState(false)
   const { user, logout } = useAuth()
@@ -48,10 +48,8 @@ export function AppSidebar() {
     localStorage.setItem("sidebar-collapsed", JSON.stringify(collapsed))
   }, [collapsed])
 
-  if (!user) return null
-
   const userTitle =
-    user.role === "admin" ? t("sidebar.adminPanel") : t("sidebar.userPanel")
+    user?.role === "admin" ? t("sidebar.adminPanel") : t("sidebar.userPanel")
 
   const menuItems = [
     {
@@ -97,7 +95,7 @@ export function AppSidebar() {
         </Link>
       </div>
 
-      {!isCollapsed && (
+      {!isCollapsed && user && (
         <div className="border-b border-border px-3 py-2.5 flex items-center justify-between gap-2">
           <div className="min-w-0 flex-1">
             <div className="text-xs font-semibold text-primary truncate">

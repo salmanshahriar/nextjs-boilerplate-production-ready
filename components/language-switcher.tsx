@@ -28,6 +28,18 @@ export default function LanguageSwitcher({
 }: LanguageSwitcherProps) {
   const { locale, setLocale } = useLanguage()
 
+  const handleLanguageChange = (newLocale: Locale) => {
+    setLocale(newLocale)
+
+    if (newLocale === "ar") {
+      document.documentElement.dir = "rtl"
+      document.documentElement.lang = newLocale
+    } else {
+      document.documentElement.dir = "ltr"
+      document.documentElement.lang = newLocale
+    }
+  }
+
   const dropdownMenu = (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -40,7 +52,7 @@ export default function LanguageSwitcher({
         {LOCALES.map((loc) => (
           <DropdownMenuItem
             key={loc}
-            onClick={() => setLocale(loc)}
+            onClick={() => handleLanguageChange(loc)}
             className={locale === loc ? "bg-accent" : ""}
           >
             <span>{localeLabels[loc]}</span>
@@ -70,7 +82,7 @@ export default function LanguageSwitcher({
           {LOCALES.map((loc) => (
             <DropdownMenuItem
               key={loc}
-              onClick={() => setLocale(loc)}
+              onClick={() => handleLanguageChange(loc)}
               className={locale === loc ? "bg-accent" : ""}
             >
               <span>{localeLabels[loc]}</span>

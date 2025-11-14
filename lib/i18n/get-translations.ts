@@ -19,7 +19,7 @@ export type Messages = typeof enTranslations
  * @returns Translation messages for the locale
  */
 export function getTranslations(locale: Locale): Messages {
-  return translations[locale] || translations.bn
+  return translations[locale] || translations.en
 }
 
 /**
