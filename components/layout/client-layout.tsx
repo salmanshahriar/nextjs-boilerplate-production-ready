@@ -20,7 +20,9 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   return (
     <>
       {showHeader && <Header />}
-      {children}
+      <div className="min-h-screen transition-all duration-300 ease-in-out">
+        {children}
+      </div>
     </>
   )
 }

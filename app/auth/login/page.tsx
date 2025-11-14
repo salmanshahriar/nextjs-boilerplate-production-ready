@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/lib/auth/auth-context"
@@ -10,18 +9,41 @@ import { getTranslations } from "@/lib/i18n/get-translations"
 import { useTranslations } from "@/lib/i18n/use-translations"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { PasswordInput } from "@/components/ui/password-input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Check, Copy } from "lucide-react"
+import InputError from "@/components/ui/input-error"
+import TextLink from "@/components/text-link"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [remember, setRemember] = useState(false)
   const [error, setError] = useState("")
+  const [status, setStatus] = useState("")
   const [isLoggingIn, setIsLoggingIn] = useState(false)
   const router = useRouter()
   const { login, user, isLoading } = useAuth()
   const { locale } = useLanguage()
   const messages = getTranslations(locale)
   const { t } = useTranslations(messages)
+  const [copiedItem, setCopiedItem] = useState<string | null>(null)
+
+  const copyToClipboard = async (
+    text: string,
+    itemId: string
+  ): Promise<void> => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopiedItem(itemId)
+      setTimeout(() => setCopiedItem(null), 2000)
+    } catch (err) {
+      console.error("Failed to copy:", err)
+    }
+  }
+
+  const canResetPassword = true
 
   useEffect(() => {
     if (!isLoading && user) {
@@ -44,6 +66,7 @@ export default function LoginPage() {
       await login(email, password)
     } catch (err) {
       setError(t("auth.login.invalidCredentials"))
+      setPassword("")
       setIsLoggingIn(false)
     }
   }
@@ -67,48 +90,151 @@ export default function LoginPage() {
           <CardTitle>{t("auth.login.title")}</CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                {t("auth.login.email")}
-              </label>
-              <Input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={t("auth.login.emailPlaceholder")}
-              />
+          <form
+            className="flex flex-col gap-4 sm:gap-6"
+            onSubmit={handleSubmit}
+          >
+            <div className="grid gap-4 sm:gap-6">
+              <div className="grid gap-2">
+                <Label htmlFor="email">{t("auth.login.email")}</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  required
+                  autoFocus
+                  tabIndex={1}
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="email@example.com"
+                />
+                <InputError message={error && !password ? error : ""} />
+              </div>
+
+              <div className="grid gap-2">
+                <Label htmlFor="password">{t("auth.login.password")}</Label>
+                <PasswordInput
+                  id="password"
+                  required
+                  tabIndex={2}
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder={t("auth.login.passwordPlaceholder")}
+                />
+                <InputError message={error && password ? error : ""} />
+              </div>
+
+              {canResetPassword && (
+                <TextLink
+                  href="/password-reset"
+                  className="ml-auto text-xs text-primary sm:text-sm"
+                  tabIndex={4}
+                >
+                  {t("auth.login.forgotPassword")}
+                </TextLink>
+              )}
+
+              <Button type="submit" tabIndex={3} disabled={isLoggingIn}>
+                {t("auth.login.submit")}
+              </Button>
             </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                {t("auth.login.password")}
-              </label>
-              <Input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder={t("auth.login.passwordPlaceholder")}
-              />
+          </form>
+
+          {status && (
+            <div className="my-4 text-center text-xs font-medium text-green-600 sm:text-sm">
+              {status}
             </div>
-            <div className="bg-muted p-4 rounded-lg space-y-2">
-              <p className="text-sm font-medium">
-                {t("auth.login.testCredentials")}:
-              </p>
-              <div className="text-xs space-y-1">
-                <p>
-                  <strong>{t("auth.login.admin")}:</strong> admin@test.com /
-                  12345
-                </p>
-                <p>
-                  <strong>{t("auth.login.user")}:</strong> user@test.com / 12345
-                </p>
+          )}
+
+          <div className="bg-muted p-4 rounded-lg space-y-2 mt-4 max-w-md">
+            <p className="text-sm font-medium">Test Credentials:</p>
+            <div className="text-xs space-y-2">
+              <div>
+                <div className="flex items-center justify-around">
+                  <p className="font-semibold">Admin:</p>
+                  <div className="flex items-center">
+                    <span className="text-muted-foreground">Email:</span>
+                    <code className="ml-1 bg-background px-2 py-0.5 rounded border">
+                      admin@test.com
+                    </code>
+                    <button
+                      onClick={() =>
+                        copyToClipboard("admin@test.com", "admin-email")
+                      }
+                      className="ml-2 p-1 hover:bg-accent rounded transition-colors"
+                      title="Copy to clipboard"
+                    >
+                      {copiedItem === "admin-email" ? (
+                        <Check className="w-3 h-3 text-green-600" />
+                      ) : (
+                        <Copy className="w-3 h-3 text-muted-foreground" />
+                      )}
+                    </button>
+                  </div>
+                  <div className="flex items-center mt-1">
+                    <span className="text-muted-foreground">Pass:</span>
+                    <code className="ml-1 bg-background px-2 py-0.5 rounded border">
+                      12345
+                    </code>
+                    <button
+                      onClick={() => copyToClipboard("12345", "admin-pass")}
+                      className="ml-2 p-1 hover:bg-accent rounded transition-colors"
+                      title="Copy to clipboard"
+                    >
+                      {copiedItem === "admin-pass" ? (
+                        <Check className="w-3 h-3 text-green-600" />
+                      ) : (
+                        <Copy className="w-3 h-3 text-muted-foreground" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center justify-around">
+                  <p className="font-semibold">User:</p>
+                  <div className="flex items-center">
+                    <span className="text-muted-foreground">Email:</span>
+                    <code className="ml-1 bg-background px-2 py-0.5 rounded border">
+                      user@test.com
+                    </code>
+                    <button
+                      onClick={() =>
+                        copyToClipboard("user@test.com", "user-email")
+                      }
+                      className="ml-2 p-1 hover:bg-accent rounded transition-colors"
+                      title="Copy to clipboard"
+                    >
+                      {copiedItem === "user-email" ? (
+                        <Check className="w-3 h-3 text-green-600" />
+                      ) : (
+                        <Copy className="w-3 h-3 text-muted-foreground" />
+                      )}
+                    </button>
+                  </div>
+                  <div className="flex items-center mt-1">
+                    <span className="text-muted-foreground">Pass:</span>
+                    <code className="ml-1 bg-background px-2 py-0.5 rounded border">
+                      12345
+                    </code>
+                    <button
+                      onClick={() => copyToClipboard("12345", "user-pass")}
+                      className="ml-2 p-1 hover:bg-accent rounded transition-colors"
+                      title="Copy to clipboard"
+                    >
+                      {copiedItem === "user-pass" ? (
+                        <Check className="w-3 h-3 text-green-600" />
+                      ) : (
+                        <Copy className="w-3 h-3 text-muted-foreground" />
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-            {error && <p className="text-sm text-destructive">{error}</p>}
-            <Button type="submit" className="w-full">
-              {t("auth.login.submit")}
-            </Button>
-          </form>
+          </div>
         </CardContent>
       </Card>
     </div>

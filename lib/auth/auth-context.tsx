@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { createContext, useContext, useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import type { AuthUser, AuthContext as AuthContextType } from "@/lib/auth/types"
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -10,6 +11,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const router = useRouter()
 
   useEffect(() => {
     const stored = localStorage.getItem("user")
@@ -46,6 +48,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = () => {
     setUser(null)
     localStorage.removeItem("user")
+    router.push("/auth/login")
   }
 
   return (

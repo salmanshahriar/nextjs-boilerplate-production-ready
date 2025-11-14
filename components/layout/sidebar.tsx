@@ -248,10 +248,28 @@ export function Sidebar() {
     </div>
   )
 
+  const sidebarBorderClass = isRtl ? "border-l" : "border-r"
+
+  const mobileButtonPositionClass = isRtl
+    ? "right-4 left-auto"
+    : "left-4 right-auto"
+
+  const expandButtonPositionClass = isRtl
+    ? "-left-3 right-auto"
+    : "-right-3 left-auto"
+
+  const expandIcon = isRtl ? (
+    <ChevronLeft className="h-3 w-3" />
+  ) : (
+    <ChevronRight className="h-3 w-3" />
+  )
+
   return (
     <>
       {/* Mobile Burger Menu Button */}
-      <div className="md:hidden fixed top-4 left-4 z-50">
+      <div
+        className={cn("md:hidden fixed top-4 z-50", mobileButtonPositionClass)}
+      >
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="h-10 w-10">
@@ -271,25 +289,29 @@ export function Sidebar() {
       {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "hidden md:flex fixed left-0 top-0 h-screen flex-col border-r border-border bg-background z-40 transition-all duration-300 ease-in-out",
+          "hidden md:flex h-screen flex-col bg-background z-40 transition-all duration-300 ease-in-out flex-shrink-0",
+          sidebarBorderClass,
+          "border-border",
           collapsed ? "w-16" : "w-56"
         )}
+        style={{ position: "relative" }}
       >
         <SidebarContent isCollapsed={collapsed} />
 
         {collapsed && (
-          <div className="absolute -right-3 top-1/2 -translate-y-1/2 z-50">
+          <div
+            className={cn(
+              "absolute top-1/2 -translate-y-1/2 z-50",
+              expandButtonPositionClass
+            )}
+          >
             <Button
               variant="outline"
               size="icon"
               className="h-6 w-6 rounded-full border-2 border-background shadow-md"
               onClick={() => setCollapsed(false)}
             >
-              {isRtl ? (
-                <ChevronLeft className="h-3 w-3" />
-              ) : (
-                <ChevronRight className="h-3 w-3" />
-              )}
+              {expandIcon}
               <span className="sr-only">Expand sidebar</span>
             </Button>
           </div>
