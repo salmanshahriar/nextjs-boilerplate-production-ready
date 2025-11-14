@@ -1,86 +1,84 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { useAuth } from "@/lib/auth/auth-context"
-import { useLanguage } from "@/lib/i18n/language-context"
-import { getTranslations } from "@/lib/i18n/get-translations"
-import { useTranslations } from "@/lib/i18n/use-translations"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { PasswordInput } from "@/components/ui/password-input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Check, Copy } from "lucide-react"
-import InputError from "@/components/ui/input-error"
-import TextLink from "@/components/text-link"
+import type React from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/auth/auth-context";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { getTranslations } from "@/lib/i18n/get-translations";
+import { useTranslations } from "@/lib/i18n/use-translations";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { PasswordInput } from "@/components/ui/password-input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Check, Copy } from "lucide-react";
+import InputError from "@/components/ui/input-error";
+import TextLink from "@/components/text-link";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [remember, setRemember] = useState(false)
-  const [error, setError] = useState("")
-  const [status, setStatus] = useState("")
-  const [isLoggingIn, setIsLoggingIn] = useState(false)
-  const router = useRouter()
-  const { login, user, isLoading } = useAuth()
-  const { locale } = useLanguage()
-  const messages = getTranslations(locale)
-  const { t } = useTranslations(messages)
-  const [copiedItem, setCopiedItem] = useState<string | null>(null)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const router = useRouter();
+  const { login, user, isLoading } = useAuth();
+  const { locale } = useLanguage();
+  const messages = getTranslations(locale);
+  const { t } = useTranslations(messages);
+  const [copiedItem, setCopiedItem] = useState<string | null>(null);
 
   const copyToClipboard = async (
     text: string,
-    itemId: string
+    itemId: string,
   ): Promise<void> => {
     try {
-      await navigator.clipboard.writeText(text)
-      setCopiedItem(itemId)
-      setTimeout(() => setCopiedItem(null), 2000)
+      await navigator.clipboard.writeText(text);
+      setCopiedItem(itemId);
+      setTimeout(() => setCopiedItem(null), 2000);
     } catch (err) {
-      console.error("Failed to copy:", err)
+      console.error("Failed to copy:", err);
     }
-  }
+  };
 
-  const canResetPassword = true
+  const canResetPassword = true;
 
   useEffect(() => {
     if (!isLoading && user) {
-      router.replace("/dashboard")
+      router.replace("/dashboard");
     }
-  }, [user, isLoading, router])
+  }, [user, isLoading, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    setIsLoggingIn(true)
+    e.preventDefault();
+    setError("");
+    setIsLoggingIn(true);
 
     if (!email || !password) {
-      setError(t("auth.login.fillAllFields"))
-      setIsLoggingIn(false)
-      return
+      setError(t("auth.login.fillAllFields"));
+      setIsLoggingIn(false);
+      return;
     }
 
     try {
-      await login(email, password)
-    } catch (err) {
-      setError(t("auth.login.invalidCredentials"))
-      setPassword("")
-      setIsLoggingIn(false)
+      await login(email, password);
+    } catch {
+      setError(t("auth.login.invalidCredentials"));
+      setPassword("");
+      setIsLoggingIn(false);
     }
-  }
+  };
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
         <div>{t("common.loading")}</div>
       </div>
-    )
+    );
   }
 
   if (user) {
-    return null
+    return null;
   }
 
   return (
@@ -140,12 +138,6 @@ export default function LoginPage() {
               </Button>
             </div>
           </form>
-
-          {status && (
-            <div className="my-4 text-center text-xs font-medium text-green-600 sm:text-sm">
-              {status}
-            </div>
-          )}
 
           <div className="bg-muted p-4 rounded-lg space-y-2 mt-4 max-w-md">
             <p className="text-sm font-medium">Test Credentials:</p>
@@ -238,5 +230,5 @@ export default function LoginPage() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import { usePathname } from "next/navigation"
-import Header from "@/components/layout/header"
+import { usePathname } from "next/navigation";
+import Header from "@/components/layout/header";
 
 interface ClientLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function ClientLayout({ children }: ClientLayoutProps) {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
-  const protectedRoutes = ["/dashboard"]
+  const protectedRoutes = ["/dashboard"];
   const isProtectedRoute = protectedRoutes.some((route) =>
-    pathname?.startsWith(route)
-  )
+    pathname?.startsWith(route),
+  );
 
-  const showHeader = !isProtectedRoute
+  const showHeader = !isProtectedRoute;
 
   return (
     <>
@@ -24,5 +24,5 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
         {children}
       </div>
     </>
-  )
+  );
 }

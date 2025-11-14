@@ -1,10 +1,10 @@
-import { cn } from "@/lib/utils"
-import Link from "next/link"
-import { ComponentProps } from "react"
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { ComponentProps } from "react";
 
 type LinkProps = ComponentProps<typeof Link> & {
-  variant?: "default" | "underlined"
-}
+  variant?: "default" | "underlined";
+};
 
 export default function TextLink({
   className = "",
@@ -18,11 +18,11 @@ export default function TextLink({
         "text-foreground",
         variant === "default" && "no-underline",
         variant === "underlined" && "text-foreground/50 underline",
-        className
+        className,
       )}
       {...props}
     >
       {children}
     </Link>
-  )
+  );
 }

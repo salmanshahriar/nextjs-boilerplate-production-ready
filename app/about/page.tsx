@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { HeadManager } from "@/components/common/head-manager"
-import { useLanguage } from "@/lib/i18n/language-context"
-import { getTranslations } from "@/lib/i18n/get-translations"
-import { useTranslations } from "@/lib/i18n/use-translations"
+import { HeadManager } from "@/components/common/head-manager";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { getTranslations } from "@/lib/i18n/get-translations";
+import { useTranslations } from "@/lib/i18n/use-translations";
 
 export default function AboutPage() {
-  const { locale } = useLanguage()
-  const messages = getTranslations(locale)
-  const { t } = useTranslations(messages)
-  const isRtl = locale === "ar"
+  const { locale } = useLanguage();
+  const messages = getTranslations(locale);
+  const { t } = useTranslations(messages);
+  const isRtl = locale === "ar";
 
   return (
     <>
@@ -31,5 +31,5 @@ export default function AboutPage() {
         </div>
       </div>
     </>
-  )
+  );
 }

@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useAuth } from "@/lib/auth/auth-context"
-import { Sidebar } from "@/components/layout/sidebar"
+import type React from "react";
+import { useAuth } from "@/lib/auth/auth-context";
+import { Sidebar } from "@/components/layout/sidebar";
 
 export default function ProtectedLayout({
   children,
   user,
   admin,
 }: {
-  children: React.ReactNode
-  user: React.ReactNode
-  admin: React.ReactNode
+  children: React.ReactNode;
+  user: React.ReactNode;
+  admin: React.ReactNode;
 }) {
-  const { user: currentUser } = useAuth()
+  const { user: currentUser } = useAuth();
 
-  const content = currentUser?.role === "admin" ? admin : user
+  const content = currentUser?.role === "admin" ? admin : user;
 
   return (
     <div className="flex h-screen">
@@ -26,5 +26,5 @@ export default function ProtectedLayout({
         </div>
       </main>
     </div>
-  )
+  );
 }

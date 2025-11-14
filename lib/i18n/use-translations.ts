@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useCallback, useMemo } from "react"
-import type { TranslationKeys } from "./types"
-import type { Messages } from "./get-translations"
-import { getNestedValue } from "./get-translations"
+import { useCallback, useMemo } from "react";
+import type { TranslationKeys } from "./types";
+import type { Messages } from "./get-translations";
+import { getNestedValue } from "./get-translations";
 
 /**
  * Custom hook for type-safe translations
@@ -13,11 +13,11 @@ import { getNestedValue } from "./get-translations"
 export function useTranslations(messages: Messages) {
   const t = useCallback(
     (key: TranslationKeys, defaultValue?: string): string => {
-      const value = getNestedValue(messages, key)
-      return typeof value === "string" ? value : defaultValue || key
+      const value = getNestedValue(messages, key);
+      return typeof value === "string" ? value : defaultValue || key;
     },
-    [messages]
-  )
+    [messages],
+  );
 
-  return useMemo(() => ({ t }), [t])
+  return useMemo(() => ({ t }), [t]);
 }

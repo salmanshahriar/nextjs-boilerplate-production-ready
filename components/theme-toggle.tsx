@@ -1,37 +1,37 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Moon, Sun, Monitor } from "lucide-react"
-import { useTheme } from "next-themes"
-import { Button } from "@/components/ui/button"
+import * as React from "react";
+import { Moon, Sun, Monitor } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { useLanguage } from "@/lib/i18n/language-context"
-import { getTranslations } from "@/lib/i18n/get-translations"
-import { useTranslations } from "@/lib/i18n/use-translations"
+} from "@/components/ui/dropdown-menu";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { getTranslations } from "@/lib/i18n/get-translations";
+import { useTranslations } from "@/lib/i18n/use-translations";
 
 interface ThemeToggleProps {
-  variant?: "default" | "titled"
-  title?: string
+  variant?: "default" | "titled";
+  title?: string;
 }
 
 export function ThemeToggle({
   variant = "default",
   title = "Theme",
 }: ThemeToggleProps) {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = React.useState(false)
-  const { locale } = useLanguage()
-  const messages = getTranslations(locale)
-  const { t } = useTranslations(messages)
+  const { setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+  const { locale } = useLanguage();
+  const messages = getTranslations(locale);
+  const { t } = useTranslations(messages);
 
   React.useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   const dropdownMenu = (
     <DropdownMenu>
@@ -63,7 +63,7 @@ export function ThemeToggle({
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 
   if (variant === "titled") {
     return (
@@ -103,8 +103,8 @@ export function ThemeToggle({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    )
+    );
   }
 
-  return dropdownMenu
+  return dropdownMenu;
 }

@@ -1,17 +1,17 @@
-import type { Locale } from "./types"
-import type { TranslationKeys } from "./types"
-import enTranslations from "@/locales/en.json"
-import bnTranslations from "@/locales/bn.json"
-import arTranslations from "@/locales/ar.json"
+import type { Locale } from "./types";
+import type { TranslationKeys } from "./types";
+import enTranslations from "@/locales/en.json";
+import bnTranslations from "@/locales/bn.json";
+import arTranslations from "@/locales/ar.json";
 
 // Translation files mapping
 const translations = {
   en: enTranslations,
   bn: bnTranslations,
   ar: arTranslations,
-} as const
+} as const;
 
-export type Messages = typeof enTranslations
+export type Messages = typeof enTranslations;
 
 /**
  * Get translations for a specific locale
@@ -19,7 +19,7 @@ export type Messages = typeof enTranslations
  * @returns Translation messages for the locale
  */
 export function getTranslations(locale: Locale): Messages {
-  return translations[locale] || translations.en
+  return translations[locale] || translations.en;
 }
 
 /**
@@ -29,7 +29,9 @@ export function getTranslations(locale: Locale): Messages {
  * @returns The value at the path or the path itself if not found
  */
 export function getNestedValue(obj: any, path: string): string {
-  return path.split(".").reduce((current, prop) => current?.[prop], obj) || path
+  return (
+    path.split(".").reduce((current, prop) => current?.[prop], obj) || path
+  );
 }
 
 /**
@@ -42,8 +44,8 @@ export function getNestedValue(obj: any, path: string): string {
 export function t(
   messages: Messages,
   key: TranslationKeys,
-  defaultValue?: string
+  defaultValue?: string,
 ): string {
-  const value = getNestedValue(messages, key)
-  return typeof value === "string" ? value : defaultValue || key
+  const value = getNestedValue(messages, key);
+  return typeof value === "string" ? value : defaultValue || key;
 }

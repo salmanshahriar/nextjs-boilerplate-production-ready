@@ -1,24 +1,24 @@
 // Type definitions for i18n system
-export type Locale = "bn" | "en" | "ar"
+export type Locale = "bn" | "en" | "ar";
 
-export const LOCALES: Locale[] = ["bn", "en", "ar"]
-export const DEFAULT_LOCALE: Locale = "en"
+export const LOCALES: Locale[] = ["bn", "en", "ar"];
+export const DEFAULT_LOCALE: Locale = "en";
 
 export interface Translations {
-  [key: string]: string | Translations
+  [key: string]: string | Translations;
 }
 
 export interface I18nConfig {
-  locales: Locale[]
-  defaultLocale: Locale
-  localeDetection: boolean
+  locales: Locale[];
+  defaultLocale: Locale;
+  localeDetection: boolean;
 }
 
 export const i18nConfig: I18nConfig = {
   locales: LOCALES,
   defaultLocale: DEFAULT_LOCALE,
   localeDetection: true,
-}
+};
 
 export type TranslationKeys =
   | "common.welcome"
@@ -109,4 +109,4 @@ export type TranslationKeys =
   | "sidebar.userPanel"
   | "sidebar.menu"
   | "sidebar.theme"
-  | "sidebar.language"
+  | "sidebar.language";

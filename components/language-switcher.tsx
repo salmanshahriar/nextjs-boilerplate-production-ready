@@ -1,44 +1,46 @@
-"use client"
+"use client";
 
-import { Languages } from "lucide-react"
-import { useLanguage } from "@/lib/i18n/language-context"
-import { type Locale, LOCALES } from "@/lib/i18n/types"
-import { Button } from "@/components/ui/button"
+import { Languages } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { type Locale, LOCALES } from "@/lib/i18n/types";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
+import { useEffect } from "react";
 
 const localeLabels: Record<Locale, string> = {
   bn: "বাংলা",
   en: "English",
   ar: "العربية",
-}
+};
 
 interface LanguageSwitcherProps {
-  variant?: "default" | "titled"
-  title?: string
+  variant?: "default" | "titled";
+  title?: string;
 }
 
 export default function LanguageSwitcher({
   variant = "default",
   title = "Language",
 }: LanguageSwitcherProps) {
-  const { locale, setLocale } = useLanguage()
+  const { locale, setLocale } = useLanguage();
+
+  useEffect(() => {
+    if (locale === "ar") {
+      document.documentElement.dir = "rtl";
+    } else {
+      document.documentElement.dir = "ltr";
+    }
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   const handleLanguageChange = (newLocale: Locale) => {
-    setLocale(newLocale)
-
-    if (newLocale === "ar") {
-      document.documentElement.dir = "rtl"
-      document.documentElement.lang = newLocale
-    } else {
-      document.documentElement.dir = "ltr"
-      document.documentElement.lang = newLocale
-    }
-  }
+    setLocale(newLocale);
+  };
 
   const dropdownMenu = (
     <DropdownMenu>
@@ -60,7 +62,7 @@ export default function LanguageSwitcher({
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 
   if (variant === "titled") {
     return (
@@ -90,8 +92,8 @@ export default function LanguageSwitcher({
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
-    )
+    );
   }
 
-  return dropdownMenu
+  return dropdownMenu;
 }

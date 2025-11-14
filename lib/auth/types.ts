@@ -1,15 +1,15 @@
-export type UserRole = "user" | "admin"
+export type UserRole = "user" | "admin";
 
 export interface AuthUser {
-  id: string
-  email: string
-  role: UserRole
+  id: string;
+  email: string;
+  role: UserRole;
 }
 
 export interface AuthContext {
-  user: AuthUser | null
-  isLoading: boolean
-  login: (email: string, password: string) => Promise<void>
-  logout: () => void
-  isAuthenticated: boolean
+  user: AuthUser | null;
+  isLoading: boolean;
+  login: (_email: string, _password: string) => Promise<void>;
+  logout: () => void;
+  isAuthenticated: boolean;
 }

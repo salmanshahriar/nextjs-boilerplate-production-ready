@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { useLanguage } from "@/lib/i18n/language-context"
-import { getTranslations } from "@/lib/i18n/get-translations"
-import { useTranslations } from "@/lib/i18n/use-translations"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useLanguage } from "@/lib/i18n/language-context";
+import { getTranslations } from "@/lib/i18n/get-translations";
+import { useTranslations } from "@/lib/i18n/use-translations";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function AboutPage() {
-  const { locale } = useLanguage()
-  const messages = getTranslations(locale)
-  const { t } = useTranslations(messages)
-  const isRtl = locale === "ar"
+  const { locale } = useLanguage();
+  const messages = getTranslations(locale);
+  const { t } = useTranslations(messages);
+  const isRtl = locale === "ar";
 
   const features = [
     {
@@ -52,7 +52,7 @@ export default function AboutPage() {
       description: "",
       details: [],
     },
-  ]
+  ];
 
   return (
     <div
@@ -116,5 +116,5 @@ export default function AboutPage() {
         ))}
       </div>
     </div>
-  )
+  );
 }

@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { useAuth } from "@/lib/auth/auth-context"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { useLanguage } from "@/lib/i18n/language-context"
-import { getTranslations } from "@/lib/i18n/get-translations"
-import { useTranslations } from "@/lib/i18n/use-translations"
+import { useAuth } from "@/lib/auth/auth-context";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { getTranslations } from "@/lib/i18n/get-translations";
+import { useTranslations } from "@/lib/i18n/use-translations";
 
 export default function UserDashboardPage() {
-  const { user } = useAuth()
-  const { locale } = useLanguage()
-  const messages = getTranslations(locale)
-  const { t } = useTranslations(messages)
+  const { user } = useAuth();
+  const { locale } = useLanguage();
+  const messages = getTranslations(locale);
+  const { t } = useTranslations(messages);
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-12 md:pt-12 pt-20">
@@ -44,5 +44,5 @@ export default function UserDashboardPage() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import LoaderIcon from "@/components/icon/LoaderIcon"
+import LoaderIcon from "@/components/icon/LoaderIcon";
 
 export default function LoadingScreen() {
   return (
@@ -8,5 +8,5 @@ export default function LoadingScreen() {
         Loading...
       </div>
     </div>
-  )
+  );
 }

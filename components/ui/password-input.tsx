@@ -1,12 +1,12 @@
-import { cn } from "@/lib/utils"
-import { EyeClosedIcon, EyeIcon } from "lucide-react"
-import * as React from "react"
-import { Input } from "./input"
+import { cn } from "@/lib/utils";
+import { EyeClosedIcon, EyeIcon } from "lucide-react";
+import * as React from "react";
+import { Input } from "./input";
 
 interface PasswordInputProps
   extends Omit<React.ComponentProps<"input">, "type"> {
-  error?: boolean
-  errorMessage?: string
+  error?: boolean;
+  errorMessage?: string;
 }
 
 function PasswordInput({
@@ -15,7 +15,7 @@ function PasswordInput({
   errorMessage,
   ...props
 }: PasswordInputProps) {
-  const [showPassword, setShowPassword] = React.useState(false)
+  const [showPassword, setShowPassword] = React.useState(false);
 
   return (
     <>
@@ -33,7 +33,7 @@ function PasswordInput({
           onClick={() => setShowPassword(!showPassword)}
           className={cn(
             "absolute top-0 right-0 h-full cursor-pointer border-l px-3 text-muted-foreground transition-colors hover:text-foreground",
-            error && "border-l-red-500"
+            error && "border-l-red-500",
           )}
           aria-label={showPassword ? "Hide password" : "Show password"}
         >
@@ -45,7 +45,7 @@ function PasswordInput({
         <p className="text-sm text-destructive">{errorMessage}</p>
       )}
     </>
-  )
+  );
 }
 
-export { PasswordInput }
+export { PasswordInput };

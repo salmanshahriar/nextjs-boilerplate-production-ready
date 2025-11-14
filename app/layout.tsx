@@ -1,89 +1,88 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Geist } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { LanguageProvider } from "@/lib/i18n/language-context"
-import { AuthProvider } from "@/lib/auth/auth-context"
-import { ThemeProvider } from "@/components/theme-provider"
+import type React from "react";
+import type { Metadata } from "next";
+import { Geist } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { LanguageProvider } from "@/lib/i18n/language-context";
+import { AuthProvider } from "@/lib/auth/auth-context";
+import { ThemeProvider } from "@/components/theme-provider";
 
-import Script from "next/script"
-import "./globals.css"
-import ClientLayout from "@/components/layout/client-layout"
-import seoData from "./SEO/app-main-meta-data.json"
+import Script from "next/script";
+import "./globals.css";
+import ClientLayout from "@/components/layout/client-layout";
+import seoData from "./SEO/app-main-meta-data.json";
 
 interface SiteConfig {
-  appName: string
-  appType: string
-  tagline: string
+  appName: string;
+  appType: string;
+  tagline: string;
   organization: {
-    name: string
-    legalName: string
-    url: string
-    logo: string
-    description: string
-    foundingDate: string
-    email: string
-    phone: string
+    name: string;
+    legalName: string;
+    url: string;
+    logo: string;
+    description: string;
+    foundingDate: string;
+    email: string;
+    phone: string;
     address: {
-      street: string
-      city: string
-      region: string
-      postalCode: string
-      country: string
-      countryCode: string
-    }
-  }
+      street: string;
+      city: string;
+      region: string;
+      postalCode: string;
+      country: string;
+      countryCode: string;
+    };
+  };
   contact: {
-    supportEmail: string
-    salesEmail: string
-    phoneNumber: string
-  }
-  domain: string
-  canonicalPath: string
+    supportEmail: string;
+    salesEmail: string;
+    phoneNumber: string;
+  };
+  domain: string;
+  canonicalPath: string;
   social: {
-    facebook: string
-    twitter: string
-    linkedin: string
-    instagram: string
-    youtube: string
-    github: string
-  }
-  title: string
-  description: string
-  locale: string
-  language: string
-  keywords: string[]
-  features: string[]
-  audience: string
+    facebook: string;
+    twitter: string;
+    linkedin: string;
+    instagram: string;
+    youtube: string;
+    github: string;
+  };
+  title: string;
+  description: string;
+  locale: string;
+  language: string;
+  keywords: string[];
+  features: string[];
+  audience: string;
   images: {
-    og: string
-    logo: string
-    ogWidth: number
-    ogHeight: number
-  }
+    og: string;
+    logo: string;
+    ogWidth: number;
+    ogHeight: number;
+  };
   theme: {
-    dark: string
-    light: string
-  }
+    dark: string;
+    light: string;
+  };
   icons: {
-    favicon: string
-    svg: string
-    appleTouchIcon: string
-  }
-  manifest: string
-  applicationCategory: string
+    favicon: string;
+    svg: string;
+    appleTouchIcon: string;
+  };
+  manifest: string;
+  applicationCategory: string;
   pricing: {
-    model: string
-    currency: string
-    minPrice: string
-    maxPrice: string
-  }
+    model: string;
+    currency: string;
+    minPrice: string;
+    maxPrice: string;
+  };
 }
 
-const geist = Geist({ subsets: ["latin"] })
+const geist = Geist({ subsets: ["latin"] });
 
-// Type assertion for imported JSON
-const siteConfig = seoData as SiteConfig
+const siteConfig = seoData as SiteConfig;
 
 // ============================================
 // METADATA FOR SEO [Fill the data on SEO.json]
@@ -158,12 +157,12 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -369,5 +368,5 @@ export default function RootLayout({
           )}
       </body>
     </html>
-  )
+  );
 }
