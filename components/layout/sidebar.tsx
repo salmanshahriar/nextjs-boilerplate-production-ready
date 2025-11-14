@@ -276,7 +276,7 @@ export function Sidebar() {
         )}
       >
         <SidebarContent isCollapsed={collapsed} />
-        {/* Expand Button when collapsed */}
+
         {collapsed && (
           <div className="absolute -right-3 top-1/2 -translate-y-1/2 z-50">
             <Button
@@ -295,15 +295,6 @@ export function Sidebar() {
           </div>
         )}
       </aside>
-
-      {/* Spacer for desktop sidebar */}
-      <div
-        className={cn(
-          "hidden md:block shrink-0 transition-all duration-300 ease-in-out",
-          collapsed ? "w-16" : "w-56"
-        )}
-        aria-hidden="true"
-      />
     </>
   )
 }

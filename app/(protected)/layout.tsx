@@ -1,8 +1,8 @@
 "use client"
 
 import type React from "react"
-import { AppSidebar } from "@/components/layout/app-sidebar"
 import { useAuth } from "@/lib/auth/auth-context"
+import { Sidebar } from "@/components/layout/sidebar"
 
 export default function ProtectedLayout({
   children,
@@ -18,9 +18,13 @@ export default function ProtectedLayout({
   const content = currentUser?.role === "admin" ? admin : user
 
   return (
-    <div className="flex min-h-screen">
-      <AppSidebar />
-      <main className="flex-1 md:ml-0">{content || children}</main>
-    </div>
+    <>
+      <Sidebar />
+      <main className="flex-1 w-full md:ml-56">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {content || children}
+        </div>
+      </main>
+    </>
   )
 }
