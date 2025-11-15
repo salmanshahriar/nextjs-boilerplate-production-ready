@@ -1,6 +1,5 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { AuthProvider } from "@/lib/auth/auth-context";
@@ -79,8 +78,6 @@ interface SiteConfig {
     maxPrice: string;
   };
 }
-
-const geist = Geist({ subsets: ["latin"] });
 
 const siteConfig = seoData as SiteConfig;
 
@@ -201,7 +198,7 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className={`${geist.className} font-sans antialiased`}>
+      <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

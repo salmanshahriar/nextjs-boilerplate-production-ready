@@ -1,18 +1,19 @@
 "use client";
 
 import type React from "react";
-
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import type {
   AuthUser,
   AuthContext as AuthContextType,
 } from "@/lib/auth/types";
+import LoadingScreen from "@/components/common/loading-screen";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const getInitialUser = (): AuthUser | null => {
+  const getStoredUser = (): AuthUser | null => {
+    if (typeof window === "undefined") return null;
     const stored = localStorage.getItem("user");
     if (stored) {
       try {
@@ -25,11 +26,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return null;
   };
 
-  const [user, setUser] = useState<AuthUser | null>(getInitialUser);
-  const [isLoading] = useState(false);
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
+  useEffect(() => {
+    const storedUser = getStoredUser();
+    setUser(storedUser);
+    setIsLoading(false);
+  }, []);
+
   const login = async (email: string, password: string) => {
+    setIsLoading(true);
     let role: "admin" | "user" | null = null;
 
     if (email === "admin@test.com" && password === "12345") {
@@ -47,13 +55,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
     setUser(mockUser);
     localStorage.setItem("user", JSON.stringify(mockUser));
+    setIsLoading(false);
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
+    setIsLoading(false);
     router.push("/auth/login");
   };
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <AuthContext.Provider
