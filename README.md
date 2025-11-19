@@ -331,6 +331,8 @@ Please ensure your code follows the existing ESLint configuration and includes a
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
+---
+---
 
 <div align="center">
 
@@ -342,4 +344,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Star this repo** • **Share with others** • **Contribute**
 </div>
----
+
