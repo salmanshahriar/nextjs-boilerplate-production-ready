@@ -9,7 +9,7 @@
 **A fully-featured Next.js starter with i18n, RBAC, and everything you need to ship production apps faster**
 
 [Live Demo](https://nextjs-boilerplate-production-ready.vercel.app/) • [Report Bug](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/issues) • [Request Feature](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/issues)
-
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/lqn07o39ssdrp9xps988.jpg">
 </div>
 
 ---
@@ -17,6 +17,8 @@
 ## 🎯 Overview
 
 This boilerplate eliminates weeks of setup work by providing a production-ready foundation for Next.js applications. Built with modern best practices, it includes authentication, internationalization, role-based access control, SEO optimization, and a complete design system.
+<img src="https://nextjs-boilerplate-production-ready.vercel.app/og-image.png" alt="Next.js Production-Ready Boilerplate screenshot showing multi-language support, RBAC, and Tailwind UI">
+
 
 ## ✨ Features
 
@@ -240,8 +242,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**If this project helped you, please consider giving it a ⭐️**
 
-Made with ❤️
+---
+---
+
+**If this project helped you, then consider giving it a ⭐️ (STAR)**
+
+---
+---
+---
+
 
 </div>
