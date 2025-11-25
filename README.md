@@ -9,6 +9,7 @@
 **A fully-featured Next.js starter with i18n, RBAC, and everything you need to ship production apps faster**
 
 [Live Demo](https://nextjs-boilerplate-production-ready.vercel.app/) • [Report Bug](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/issues) • [Request Feature](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/issues)
+<br/><br/>
 <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/lqn07o39ssdrp9xps988.jpg">
 </div>
 
@@ -16,7 +17,7 @@
 
 ## 🎯 Overview
 
-This boilerplate eliminates weeks of setup work by providing a production-ready foundation for Next.js applications. Built with modern best practices, it includes authentication, internationalization, role-based access control, SEO optimization, and a complete design system.
+This boilerplate eliminates weeks of setup work by providing a production-ready foundation for Next.js applications. Built with modern best practices, it includes authentication, internationalization, role-based access control, SEO optimization, and a complete design system. <br/><br/>
 <img src="https://nextjs-boilerplate-production-ready.vercel.app/og-image.png" alt="Next.js Production-Ready Boilerplate screenshot showing multi-language support, RBAC, and Tailwind UI">
 
 
@@ -125,19 +126,211 @@ Edit `app/SEO/app-main-meta-data.json` to customize your app's metadata:
 
 ```json
 {
-  "appName": "Your App Name",
-  "title": "Your App Title",
-  "description": "Your app description",
+  "appName": "Next.js Boilerplate",
+  "appType": "SaaS Platform",
+  "tagline": "Your Tagline Here",
+  "title": "Next.js i18n & Role-Based Access Boilerplate",
+  "description": "Production-ready Next.js boilerplate with multi-language support (i18n) and role-based access control (RBAC)",
+  "locale": "en_US",
+  "language": "en-US",
   "domain": "https://yourdomain.com",
-  "keywords": ["keyword1", "keyword2"],
+  "canonicalPath": "/",
+  "applicationCategory": "WebApplication",
+  "audience": "Developers, Businesses",
+  "keywords": ["nextjs", "i18n", "rbac", "boilerplate", "multilanguage"],
+  "features": ["Multi-language Support", "Role-Based Access Control", "Production Ready"],
+
+  "languages": {
+    "supported": ["en", "bn", "ar"],
+    "default": "en",
+    "locales": {
+      "en": {
+        "code": "en",
+        "name": "English",
+        "nativeName": "English",
+        "locale": "en_US",
+        "direction": "ltr"
+      },
+      "bn": {
+        "code": "bn",
+        "name": "Bengali",
+        "nativeName": "বাংলা",
+        "locale": "bn_BD",
+        "direction": "ltr"
+      },
+      "ar": {
+        "code": "ar",
+        "name": "Arabic",
+        "nativeName": "العربية",
+        "locale": "ar_SA",
+        "direction": "rtl"
+      }
+    }
+  },
+
   "organization": {
     "name": "Your Organization",
-    "email": "contact@yourdomain.com"
+    "legalName": "Your Organization Legal Name",
+    "url": "https://yourdomain.com",
+    "logo": "/logo.png",
+    "description": "Your organization description",
+    "foundingDate": "2024-01-01",
+    "email": "contact@yourdomain.com",
+    "phone": "+1-234-567-8900",
+    "address": {
+      "street": "123 Main Street",
+      "city": "New York",
+      "region": "NY",
+      "postalCode": "10001",
+      "country": "United States",
+      "countryCode": "US"
+    }
   },
+
+  "contact": {
+    "supportEmail": "support@yourdomain.com",
+    "salesEmail": "sales@yourdomain.com",
+    "phoneNumber": "+1-234-567-8900"
+  },
+
   "social": {
+    "facebook": "https://facebook.com/yourpage",
     "twitter": "@yourhandle",
+    "linkedin": "https://linkedin.com/company/yourcompany",
+    "instagram": "https://instagram.com/yourhandle",
+    "youtube": "https://youtube.com/@yourchannel",
     "github": "https://github.com/yourusername"
-  }
+  },
+
+  "images": {
+    "og": "/og-image.png",
+    "logo": "/logo.png",
+    "ogWidth": 1200,
+    "ogHeight": 630
+  },
+
+  "icons": {
+    "favicon": "/favicon.ico",
+    "svg": "/icon.svg",
+    "appleTouchIcon": "/apple-touch-icon.png"
+  },
+
+  "theme": {
+    "dark": "#000000",
+    "light": "#ffffff"
+  },
+
+  "pricing": {
+    "model": "freemium",
+    "currency": "USD",
+    "minPrice": "0",
+    "maxPrice": "99"
+  },
+
+  "manifest": "/manifest.json"
+}{
+  "appName": "Next.js Boilerplate",
+  "appType": "SaaS Platform",
+  "tagline": "Your Tagline Here",
+  "title": "Next.js i18n & Role-Based Access Boilerplate",
+  "description": "Production-ready Next.js boilerplate with multi-language support (i18n) and role-based access control (RBAC)",
+  "locale": "en_US",
+  "language": "en-US",
+  "domain": "https://yourdomain.com",
+  "canonicalPath": "/",
+  "applicationCategory": "WebApplication",
+  "audience": "Developers, Businesses",
+  "keywords": ["nextjs", "i18n", "rbac", "boilerplate", "multilanguage"],
+  "features": ["Multi-language Support", "Role-Based Access Control", "Production Ready"],
+
+  "languages": {
+    "supported": ["en", "bn", "ar"],
+    "default": "en",
+    "locales": {
+      "en": {
+        "code": "en",
+        "name": "English",
+        "nativeName": "English",
+        "locale": "en_US",
+        "direction": "ltr"
+      },
+      "bn": {
+        "code": "bn",
+        "name": "Bengali",
+        "nativeName": "বাংলা",
+        "locale": "bn_BD",
+        "direction": "ltr"
+      },
+      "ar": {
+        "code": "ar",
+        "name": "Arabic",
+        "nativeName": "العربية",
+        "locale": "ar_SA",
+        "direction": "rtl"
+      }
+    }
+  },
+
+  "organization": {
+    "name": "Your Organization",
+    "legalName": "Your Organization Legal Name",
+    "url": "https://yourdomain.com",
+    "logo": "/logo.png",
+    "description": "Your organization description",
+    "foundingDate": "2024-01-01",
+    "email": "contact@yourdomain.com",
+    "phone": "+1-234-567-8900",
+    "address": {
+      "street": "123 Main Street",
+      "city": "New York",
+      "region": "NY",
+      "postalCode": "10001",
+      "country": "United States",
+      "countryCode": "US"
+    }
+  },
+
+  "contact": {
+    "supportEmail": "support@yourdomain.com",
+    "salesEmail": "sales@yourdomain.com",
+    "phoneNumber": "+1-234-567-8900"
+  },
+
+  "social": {
+    "facebook": "https://facebook.com/yourpage",
+    "twitter": "@yourhandle",
+    "linkedin": "https://linkedin.com/company/yourcompany",
+    "instagram": "https://instagram.com/yourhandle",
+    "youtube": "https://youtube.com/@yourchannel",
+    "github": "https://github.com/yourusername"
+  },
+
+  "images": {
+    "og": "/og-image.png",
+    "logo": "/logo.png",
+    "ogWidth": 1200,
+    "ogHeight": 630
+  },
+
+  "icons": {
+    "favicon": "/favicon.ico",
+    "svg": "/icon.svg",
+    "appleTouchIcon": "/apple-touch-icon.png"
+  },
+
+  "theme": {
+    "dark": "#000000",
+    "light": "#ffffff"
+  },
+
+  "pricing": {
+    "model": "freemium",
+    "currency": "USD",
+    "minPrice": "0",
+    "maxPrice": "99"
+  },
+
+  "manifest": "/manifest.json"
 }
 ```
 
@@ -237,7 +430,7 @@ Please ensure your code follows the existing ESLint configuration and includes a
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
+<br/><br/><br/>
 ---
 
 <div align="center">
@@ -250,7 +443,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 ---
----
+
 
 
 </div>
