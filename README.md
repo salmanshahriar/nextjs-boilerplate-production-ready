@@ -436,7 +436,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-<h1>If this project helped you, then consider giving it a ⭐️ (star)</h1>
+<h2>If this project helped you, then consider giving it a ⭐️ (star)</h2>
 
 </div>
 
