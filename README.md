@@ -1,5 +1,6 @@
-# Next.js Production-Ready Boilerplate
-
+<div align="center">
+<h1>Next.js Production-Ready Boilerplate</h1>
+</div>
 <div align="center">
 
 ![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
@@ -431,19 +432,11 @@ Please ensure your code follows the existing ESLint configuration and includes a
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 <br/><br/><br/>
----
+
 
 <div align="center">
 
-
----
----
-
-**If this project helped you, then consider giving it a ⭐️ (STAR)**
-
----
----
-
-
+<h1>If this project helped you, then consider giving it a ⭐️ (star)</h1>
 
 </div>
+
