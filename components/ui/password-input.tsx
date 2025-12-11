@@ -3,8 +3,10 @@ import { EyeClosedIcon, EyeIcon } from "lucide-react";
 import * as React from "react";
 import { Input } from "./input";
 
-interface PasswordInputProps
-  extends Omit<React.ComponentProps<"input">, "type"> {
+interface PasswordInputProps extends Omit<
+  React.ComponentProps<"input">,
+  "type"
+> {
   error?: boolean;
   errorMessage?: string;
 }
