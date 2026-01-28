@@ -436,7 +436,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-<h2>If this project helped you, then consider giving it a ⭐️ (star)</h2>
+## ⭐ Show Your Support
 
+**If this project helped you, please consider giving it a star!**
+
+[![GitHub stars](https://img.shields.io/github/stars/salmanshahriar/nextjs-boilerplate-production-ready?style=social)](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers)
+
+**Star this repo** • **Share with others** • **Contribute**
 </div>
 
