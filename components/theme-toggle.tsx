@@ -19,10 +19,7 @@ interface ThemeToggleProps {
   title?: string;
 }
 
-export function ThemeToggle({
-  variant = "default",
-  title = "Theme",
-}: ThemeToggleProps) {
+export function ThemeToggle({ variant = "default", title = "Theme" }: ThemeToggleProps) {
   const { setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
   const { locale } = useLanguage();
@@ -39,8 +36,8 @@ export function ThemeToggle({
         <Button variant="ghost" size="icon" className="h-9 w-9">
           {mounted ? (
             <>
-              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <Sun className="h-4 w-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+              <Moon className="absolute h-4 w-4 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
             </>
           ) : (
             <Sun className="h-4 w-4" />
@@ -69,17 +66,17 @@ export function ThemeToggle({
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button className="group flex items-center justify-between rounded-md px-2 hover:bg-accent/60 transition-all flex-1 w-full text-left border-0 bg-transparent cursor-pointer">
-            <div className="flex items-center gap-2 min-w-0">
-              <span className="text-[11px] font-medium text-muted-foreground group-hover:text-foreground transition-colors truncate">
+          <button className="group hover:bg-accent/60 flex w-full flex-1 cursor-pointer items-center justify-between rounded-md border-0 bg-transparent px-2 text-left transition-all">
+            <div className="flex min-w-0 items-center gap-2">
+              <span className="text-muted-foreground group-hover:text-foreground truncate text-[11px] font-medium transition-colors">
                 {title}
               </span>
             </div>
-            <div className="flex items-center justify-center h-9 w-9">
+            <div className="flex h-9 w-9 items-center justify-center">
               {mounted ? (
                 <>
-                  <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <Sun className="h-4 w-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+                  <Moon className="absolute h-4 w-4 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
                 </>
               ) : (
                 <Sun className="h-4 w-4" />

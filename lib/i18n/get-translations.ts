@@ -27,16 +27,10 @@ export function getTranslations(locale: Locale): Messages {
  * @param path - Dot notation path (e.g., "common.welcome")
  * @returns The value at the path if it's a string, otherwise undefined
  */
-export function getNestedValue(
-  obj: Record<string, unknown>,
-  path: string,
-): string | undefined {
+export function getNestedValue(obj: Record<string, unknown>, path: string): string | undefined {
   const result = path
     .split(".")
-    .reduce<unknown>(
-      (current, prop) => (current as Record<string, unknown>)?.[prop],
-      obj,
-    );
+    .reduce<unknown>((current, prop) => (current as Record<string, unknown>)?.[prop], obj);
   return typeof result === "string" ? result : undefined;
 }
 
@@ -47,11 +41,7 @@ export function getNestedValue(
  * @param defaultValue - Optional default value if key not found
  * @returns Translated string
  */
-export function t(
-  messages: Messages,
-  key: TranslationKeys,
-  defaultValue?: string,
-): string {
+export function t(messages: Messages, key: TranslationKeys, defaultValue?: string): string {
   const value = getNestedValue(messages, key);
   return value ?? defaultValue ?? key;
 }

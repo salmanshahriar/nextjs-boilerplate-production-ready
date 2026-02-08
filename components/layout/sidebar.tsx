@@ -3,13 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  LayoutDashboard,
-  LogOut,
-  Menu,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { LayoutDashboard, LogOut, Menu, ChevronLeft, ChevronRight } from "lucide-react";
 import { useAuth } from "@/lib/auth/auth-context";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { getTranslations } from "@/lib/i18n/get-translations";
@@ -21,12 +15,7 @@ import LanguageSwitcher from "../language-switcher";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import type { AuthUser } from "@/lib/auth/types";
 
 type MenuItem = {
@@ -60,26 +49,24 @@ const SidebarContent = ({
   isCollapsed = false,
   onToggleCollapse,
 }: SidebarContentProps) => (
-  <div
-    className={cn("flex h-full flex-col bg-background", isRtl && "text-right")}
-  >
+  <div className={cn("bg-background flex h-full flex-col", isRtl && "text-right")}>
     <div
       className={cn(
-        "flex items-center border-b border-border transition-all",
-        isCollapsed ? "h-14 justify-center px-2" : "h-14 px-4",
+        "border-border flex items-center border-b transition-all",
+        isCollapsed ? "h-14 justify-center px-2" : "h-14 px-4"
       )}
     >
       <Link
         href="/"
         onClick={onItemClick}
         className={cn(
-          "flex items-center gap-2 font-bold text-primary transition-all",
-          isCollapsed ? "justify-center" : "justify-start",
+          "text-primary flex items-center gap-2 font-bold transition-all",
+          isCollapsed ? "justify-center" : "justify-start"
         )}
       >
         <Logo size={28} className="h-7 w-7" />
         {!isCollapsed && (
-          <div className="flex flex-col text-md leading-tight font-semibold whitespace-nowrap">
+          <div className="text-md flex flex-col leading-tight font-semibold whitespace-nowrap">
             {siteConfig.appName || siteConfig.title}
           </div>
         )}
@@ -87,21 +74,17 @@ const SidebarContent = ({
     </div>
 
     {!isCollapsed && user && onToggleCollapse && (
-      <div className="border-b border-border px-3 py-2.5 flex items-center justify-between gap-2">
+      <div className="border-border flex items-center justify-between gap-2 border-b px-3 py-2.5">
         <div className="min-w-0 flex-1">
-          <div className="text-xs font-semibold text-primary truncate">
-            {user.role === "admin"
-              ? t("sidebar.adminPanel")
-              : t("sidebar.userPanel")}
+          <div className="text-primary truncate text-xs font-semibold">
+            {user.role === "admin" ? t("sidebar.adminPanel") : t("sidebar.userPanel")}
           </div>
-          <div className="text-[10px] text-muted-foreground truncate mt-0.5">
-            {user.email}
-          </div>
+          <div className="text-muted-foreground mt-0.5 truncate text-[10px]">{user.email}</div>
         </div>
         <Button
           variant="ghost"
           size="icon"
-          className="h-7 w-7 shrink-0 hover:bg-accent/60"
+          className="hover:bg-accent/60 h-7 w-7 shrink-0"
           onClick={onToggleCollapse}
         >
           {isRtl ? (
@@ -114,7 +97,7 @@ const SidebarContent = ({
       </div>
     )}
 
-    <nav className="flex-1 space-y-1 px-2 py-3 overflow-y-auto">
+    <nav className="flex-1 space-y-1 overflow-y-auto px-2 py-3">
       {menuItems.map((item) => {
         const Icon = item.icon;
         const isActive = pathname === item.href;
@@ -126,15 +109,11 @@ const SidebarContent = ({
             className={cn(
               "flex items-center gap-3 rounded-md px-2.5 py-2 text-sm font-medium transition-all",
               "hover:bg-accent hover:text-accent-foreground",
-              isActive
-                ? "bg-primary text-primary-foreground shadow-sm"
-                : "text-muted-foreground",
-              isCollapsed && "justify-center px-2",
+              isActive ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground",
+              isCollapsed && "justify-center px-2"
             )}
           >
-            <Icon
-              className={cn("h-4 w-4 shrink-0", isCollapsed && "mx-auto")}
-            />
+            <Icon className={cn("h-4 w-4 shrink-0", isCollapsed && "mx-auto")} />
             {!isCollapsed && <span className="truncate">{item.label}</span>}
           </Link>
         );
@@ -156,7 +135,7 @@ const SidebarContent = ({
       })}
     </nav>
 
-    <div className="border-t border-border bg-muted/30">
+    <div className="border-border bg-muted/30 border-t">
       <div className="p-2">
         {isCollapsed ? (
           <div className="space-y-0.5">
@@ -194,9 +173,9 @@ const SidebarContent = ({
         )}
       </div>
 
-      <div className="h-px bg-border mx-2" />
+      <div className="bg-border mx-2 h-px" />
 
-      <div className="p-2 space-y-0.5">
+      <div className="space-y-0.5 p-2">
         {isCollapsed ? (
           <TooltipProvider delayDuration={0}>
             <Tooltip>
@@ -204,7 +183,7 @@ const SidebarContent = ({
                 <Button
                   variant="destructive"
                   size="icon"
-                  className="w-full h-8"
+                  className="h-8 w-full"
                   onClick={() => {
                     logout();
                     onItemClick?.();
@@ -223,7 +202,7 @@ const SidebarContent = ({
           <Button
             variant="destructive"
             size="sm"
-            className="w-full justify-start gap-2 h-8 text-[11px] font-medium"
+            className="h-8 w-full justify-start gap-2 text-[11px] font-medium"
             onClick={() => {
               logout();
               onItemClick?.();
@@ -269,9 +248,7 @@ export function Sidebar() {
 
   const getMobileTitle = () => {
     if (pathname.startsWith("/dashboard")) {
-      return user?.role === "admin"
-        ? t("sidebar.adminPanel")
-        : t("sidebar.userPanel");
+      return user?.role === "admin" ? t("sidebar.adminPanel") : t("sidebar.userPanel");
     }
     return t("navigation.dashboard");
   };
@@ -280,9 +257,7 @@ export function Sidebar() {
 
   const sidebarBorderClass = isRtl ? "border-l" : "border-r";
 
-  const expandButtonPositionClass = isRtl
-    ? "-left-3 right-auto"
-    : "-right-3 left-auto";
+  const expandButtonPositionClass = isRtl ? "-left-3 right-auto" : "-right-3 left-auto";
 
   const expandIcon = isRtl ? (
     <ChevronLeft className="h-3 w-3" />
@@ -294,21 +269,18 @@ export function Sidebar() {
     <>
       {/* Mobile Header with Hamburger */}
       <div
-        className="md:hidden fixed top-0 left-0 right-0 z-50 bg-background border-b border-border h-14 flex items-center px-4"
+        className="bg-background border-border fixed top-0 right-0 left-0 z-50 flex h-14 items-center border-b px-4 md:hidden"
         dir={isRtl ? "rtl" : "ltr"}
       >
-        <div className="flex items-center gap-3 flex-1 justify-start">
+        <div className="flex flex-1 items-center justify-start gap-3">
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8 -ml-1">
+              <Button variant="ghost" size="icon" className="-ml-1 h-8 w-8">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">{t("sidebar.menu")}</span>
               </Button>
             </SheetTrigger>
-            <SheetContent
-              side={isRtl ? "right" : "left"}
-              className="w-[240px] p-0"
-            >
+            <SheetContent side={isRtl ? "right" : "left"} className="w-[240px] p-0">
               <SidebarContent
                 user={user}
                 t={t}
@@ -321,17 +293,17 @@ export function Sidebar() {
               />
             </SheetContent>
           </Sheet>
-          <h1 className="text-lg font-semibold truncate">{title}</h1>
+          <h1 className="truncate text-lg font-semibold">{title}</h1>
         </div>
       </div>
 
       {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "hidden md:flex h-screen flex-col bg-background z-40 transition-all duration-300 ease-in-out flex-shrink-0",
+          "bg-background z-40 hidden h-screen shrink-0 flex-col transition-all duration-300 ease-in-out md:flex",
           sidebarBorderClass,
           "border-border",
-          collapsed ? "w-16" : "w-56",
+          collapsed ? "w-16" : "w-56"
         )}
         style={{ position: "relative" }}
       >
@@ -347,16 +319,11 @@ export function Sidebar() {
         />
 
         {collapsed && (
-          <div
-            className={cn(
-              "absolute top-1/2 -translate-y-1/2 z-50",
-              expandButtonPositionClass,
-            )}
-          >
+          <div className={cn("absolute top-1/2 z-50 -translate-y-1/2", expandButtonPositionClass)}>
             <Button
               variant="outline"
               size="icon"
-              className="h-6 w-6 rounded-full border-2 border-background shadow-md"
+              className="border-background h-6 w-6 rounded-full border-2 shadow-md"
               onClick={() => setCollapsed(false)}
             >
               {expandIcon}

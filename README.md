@@ -54,11 +54,15 @@ Stop rebuilding auth, i18n, and SEO from scratch. This boilerplate gives you a *
   - Dynamic sitemap generation
   - Canonical URLs
 
-- 🔧 **ESLint Configuration** - Production-grade linting
+- 🔧 **ESLint & Prettier** - Lint and format
   - Next.js 15 and TypeScript rules
-  - Import sorting and organization
-  - React hooks best practices
-  - Accessibility (a11y) checks
+  - Prettier with Tailwind plugin, format on save in VS Code
+
+- 🧪 **Testing** - Vitest + React Testing Library (unit/component), Playwright (E2E)
+  - Example tests in `components/ui/button.test.tsx`, `lib/utils.test.ts`, `e2e/home.spec.ts`
+  - GitHub Actions: check (lint, format, test, build) and Playwright E2E
+
+- 🏥 **Health check** - `GET /api/health` returns `{ status: "ok" }` for probes
 
 ## 🚀 Quick Start
 
@@ -116,8 +120,10 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
 │   │   ├── @user/           # User parallel route
 │   │   │   └── dashboard/   # User dashboard pages
 │   │   └── layout.tsx       # Protected layout with role-based routing
-│   ├── layout.tsx           # Root layout
-│   └── page.tsx             # Landing page
+│   ├── api/                  # API routes (auth, health)
+│   ├── auth/login/           # Login page
+│   ├── layout.tsx            # Root layout
+│   └── page.tsx              # Landing page
 ├── components/
 │   ├── ui/                  # shadcn/ui components
 │   └── ...                  # Custom components
@@ -126,6 +132,8 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
 │   ├── config/              # Central config (site, baseUrl, app-main-meta-data.json)
 │   ├── i18n/                # i18n (locales from app-main-meta-data.json)
 │   └── utils.ts
+├── e2e/                     # Playwright E2E tests
+├── .github/workflows/        # CI (check.yml, playwright.yml)
 └── public/                  # Static assets
 ```
 
@@ -271,6 +279,23 @@ Edit **`lib/config/app-main-meta-data.json`** to customize app name, domain, SEO
    if (role === 'MODERATOR') return moderator
    ```
 
+## 🧪 Testing
+
+- **Unit / component:** [Vitest](https://vitest.dev) + [React Testing Library](https://testing-library.com/react). Run `npm run test` or `npm run test:watch`.
+- **E2E:** [Playwright](https://playwright.dev) in `e2e/`. Run `npm run e2e` (starts dev server automatically). Use `npm run e2e:ui` for the UI.
+- **E2E with Safari only:** To save disk space, install only WebKit and run with Safari: `npx playwright install webkit` then `npm run e2e:webkit`.
+- **Coverage:** `npm run test:coverage`.
+
+## 🔄 CI / DX
+
+- **GitHub Actions:** `.github/workflows/check.yml` runs on push/PR: lint, Prettier check, unit tests, build. `.github/workflows/playwright.yml` runs E2E (Chromium, Firefox, WebKit).
+- **Prettier:** `prettier.config.js` + Tailwind plugin. `npm run prettier` to check, `npm run prettier:fix` to fix.
+- **Editor:** `.vscode/settings.json` enables format on save and ESLint fix on save.
+
+## 🏥 Infra
+
+- **Health check:** `GET /api/health` returns `{ status: "ok" }` for load balancers and Kubernetes probes.
+
 ## 🛠️ Available Scripts
 
 | Command | Description |
@@ -280,6 +305,14 @@ Edit **`lib/config/app-main-meta-data.json`** to customize app name, domain, SEO
 | `npm run start` | Start production server |
 | `npm run lint` | Run ESLint |
 | `npm run lint:fix` | Fix ESLint errors |
+| `npm run test` | Run unit tests (Vitest) |
+| `npm run test:watch` | Run unit tests in watch mode |
+| `npm run test:coverage` | Run unit tests with coverage |
+| `npm run e2e` | Run Playwright E2E tests |
+| `npm run e2e:ui` | Run Playwright with UI |
+| `npm run e2e:webkit` | Run E2E in WebKit (Safari) only |
+| `npm run prettier` | Check formatting |
+| `npm run prettier:fix` | Fix formatting |
 
 ## 🧪 Tech Stack
 
@@ -289,7 +322,8 @@ Edit **`lib/config/app-main-meta-data.json`** to customize app name, domain, SEO
 - **Styling:** Tailwind CSS
 - **Components:** shadcn/ui
 - **Internationalization:** Type-safe i18n (locales from config)
-- **Code Quality:** ESLint, TypeScript strict mode
+- **Code Quality:** ESLint, Prettier, TypeScript strict mode
+- **Testing:** Vitest, React Testing Library, Playwright
 - **Icons:** Lucide React
 
 ## 📝 Use Cases

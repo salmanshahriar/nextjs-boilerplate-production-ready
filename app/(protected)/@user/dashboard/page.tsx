@@ -15,11 +15,9 @@ export default function UserDashboardPage() {
 
   return (
     <>
-      <HeadManager
-        title={`${t("dashboard.user.title")} | ${t("common.appName")}`}
-      />
-      <div className="max-w-2xl mx-auto px-4 py-12 md:pt-12 pt-20">
-        <h1 className="text-3xl font-bold mb-8">{t("dashboard.user.title")}</h1>
+      <HeadManager title={`${t("dashboard.user.title")} | ${t("common.appName")}`} />
+      <div className="mx-auto max-w-2xl px-4 py-12 pt-20 md:pt-12">
+        <h1 className="mb-8 text-3xl font-bold">{t("dashboard.user.title")}</h1>
 
         <Card>
           <CardHeader>
@@ -28,22 +26,22 @@ export default function UserDashboardPage() {
           <CardContent>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-muted-foreground">
+                <label className="text-muted-foreground block text-sm font-medium">
                   {t("dashboard.user.email")}
                 </label>
                 <p className="text-lg font-semibold">{user?.email}</p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-muted-foreground">
+                <label className="text-muted-foreground block text-sm font-medium">
                   {t("dashboard.user.role")}
                 </label>
                 <p className="text-lg font-semibold capitalize">{user?.role}</p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-muted-foreground">
+                <label className="text-muted-foreground block text-sm font-medium">
                   {t("dashboard.user.userId")}
                 </label>
-                <p className="text-sm text-muted-foreground">{user?.id}</p>
+                <p className="text-muted-foreground text-sm">{user?.id}</p>
               </div>
             </div>
           </CardContent>

@@ -16,7 +16,7 @@ export function useTranslations(messages: Messages) {
       const value = getNestedValue(messages, key);
       return typeof value === "string" ? value : defaultValue || key;
     },
-    [messages],
+    [messages]
   );
 
   return useMemo(() => ({ t }), [t]);

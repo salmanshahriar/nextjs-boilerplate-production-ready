@@ -17,20 +17,14 @@ export default function AdminDashboardPage() {
 
   return (
     <>
-      <HeadManager
-        title={`${t("dashboard.admin.title")} | ${t("common.appName")}`}
-      />
-      <div className="max-w-4xl mx-auto px-4 py-12 md:pt-12 pt-20">
-        <h1 className="text-3xl font-bold mb-8">
-          {t("dashboard.admin.title")}
-        </h1>
+      <HeadManager title={`${t("dashboard.admin.title")} | ${t("common.appName")}`} />
+      <div className="mx-auto max-w-4xl px-4 py-12 pt-20 md:pt-12">
+        <h1 className="mb-8 text-3xl font-bold">{t("dashboard.admin.title")}</h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">
-                {t("dashboard.admin.totalUsers")}
-              </CardTitle>
+              <CardTitle className="text-lg">{t("dashboard.admin.totalUsers")}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold">0</p>
@@ -39,9 +33,7 @@ export default function AdminDashboardPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">
-                {t("dashboard.admin.activeSessions")}
-              </CardTitle>
+              <CardTitle className="text-lg">{t("dashboard.admin.activeSessions")}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold">0</p>
@@ -50,9 +42,7 @@ export default function AdminDashboardPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">
-                {t("dashboard.admin.adminUsers")}
-              </CardTitle>
+              <CardTitle className="text-lg">{t("dashboard.admin.adminUsers")}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold">0</p>
@@ -68,9 +58,7 @@ export default function AdminDashboardPage() {
             <p className="text-muted-foreground mb-4">
               {t("dashboard.admin.loggedInAs")}: {user?.email}
             </p>
-            <p className="text-sm text-muted-foreground">
-              {t("dashboard.admin.adminOnly")}
-            </p>
+            <p className="text-muted-foreground text-sm">{t("dashboard.admin.adminOnly")}</p>
           </CardContent>
         </Card>
       </div>

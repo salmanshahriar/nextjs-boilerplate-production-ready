@@ -1,8 +1,5 @@
 export type { Locale } from "@/lib/config/site";
-export {
-  supportedLocales as LOCALES,
-  defaultLocale as DEFAULT_LOCALE,
-} from "@/lib/config/site";
+export { supportedLocales as LOCALES, defaultLocale as DEFAULT_LOCALE } from "@/lib/config/site";
 
 export interface Translations {
   [key: string]: string | Translations;

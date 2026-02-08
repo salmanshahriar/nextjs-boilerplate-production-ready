@@ -23,17 +23,13 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const router = useRouter();
-  const { login, user, isLoading, signInWithGoogle, isGoogleEnabled } =
-    useAuth();
+  const { login, user, isLoading, signInWithGoogle, isGoogleEnabled } = useAuth();
   const { locale } = useLanguage();
   const messages = getTranslations(locale);
   const { t } = useTranslations(messages);
   const [copiedItem, setCopiedItem] = useState<string | null>(null);
 
-  const copyToClipboard = async (
-    text: string,
-    itemId: string,
-  ): Promise<void> => {
+  const copyToClipboard = async (text: string, itemId: string): Promise<void> => {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedItem(itemId);
@@ -73,7 +69,7 @@ export default function LoginPage() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
+      <div className="flex min-h-[calc(100vh-200px)] items-center justify-center">
         <div>{t("common.loading")}</div>
       </div>
     );
@@ -85,19 +81,14 @@ export default function LoginPage() {
 
   return (
     <>
-      <HeadManager
-        title={`${t("navigation.login")} | ${t("common.appName")}`}
-      />
-      <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
+      <HeadManager title={`${t("navigation.login")} | ${t("common.appName")}`} />
+      <div className="flex min-h-[calc(100vh-200px)] items-center justify-center">
         <Card className="w-full max-w-md">
           <CardHeader>
             <CardTitle>{t("auth.login.title")}</CardTitle>
           </CardHeader>
           <CardContent>
-            <form
-              className="flex flex-col gap-4 sm:gap-6"
-              onSubmit={handleSubmit}
-            >
+            <form className="flex flex-col gap-4 sm:gap-6" onSubmit={handleSubmit}>
               <div className="grid gap-4 sm:gap-6">
                 <div className="grid gap-2">
                   <Label htmlFor="email">{t("auth.login.email")}</Label>
@@ -132,7 +123,7 @@ export default function LoginPage() {
                 {canResetPassword && (
                   <TextLink
                     href="/password-reset"
-                    className="ml-auto text-xs text-primary sm:text-sm"
+                    className="text-primary ml-auto text-xs sm:text-sm"
                     tabIndex={4}
                   >
                     {t("auth.login.forgotPassword")}
@@ -149,7 +140,7 @@ export default function LoginPage() {
                       <span className="absolute inset-0 flex items-center">
                         <span className="w-full border-t" />
                       </span>
-                      <span className="relative flex justify-center text-xs uppercase text-muted-foreground">
+                      <span className="text-muted-foreground relative flex justify-center text-xs uppercase">
                         {t("auth.login.orContinueWith")}
                       </span>
                     </div>
@@ -185,45 +176,41 @@ export default function LoginPage() {
               </div>
             </form>
 
-            <div className="bg-muted p-4 rounded-lg space-y-2 mt-4 max-w-md">
+            <div className="bg-muted mt-4 max-w-md space-y-2 rounded-lg p-4">
               <p className="text-sm font-medium">Test Credentials:</p>
-              <div className="text-xs space-y-2">
+              <div className="space-y-2 text-xs">
                 <div>
                   <div className="flex items-center justify-around">
                     <p className="font-semibold">Admin:</p>
                     <div className="flex items-center">
                       <span className="text-muted-foreground">Email:</span>
-                      <code className="ml-1 bg-background px-2 py-0.5 rounded border">
+                      <code className="bg-background ml-1 rounded border px-2 py-0.5">
                         admin@test.com
                       </code>
                       <button
-                        onClick={() =>
-                          copyToClipboard("admin@test.com", "admin-email")
-                        }
-                        className="ml-2 p-1 hover:bg-accent rounded transition-colors"
+                        onClick={() => copyToClipboard("admin@test.com", "admin-email")}
+                        className="hover:bg-accent ml-2 rounded p-1 transition-colors"
                         title="Copy to clipboard"
                       >
                         {copiedItem === "admin-email" ? (
-                          <Check className="w-3 h-3 text-green-600" />
+                          <Check className="h-3 w-3 text-green-600" />
                         ) : (
-                          <Copy className="w-3 h-3 text-muted-foreground" />
+                          <Copy className="text-muted-foreground h-3 w-3" />
                         )}
                       </button>
                     </div>
-                    <div className="flex items-center mt-1">
+                    <div className="mt-1 flex items-center">
                       <span className="text-muted-foreground">Pass:</span>
-                      <code className="ml-1 bg-background px-2 py-0.5 rounded border">
-                        12345
-                      </code>
+                      <code className="bg-background ml-1 rounded border px-2 py-0.5">12345</code>
                       <button
                         onClick={() => copyToClipboard("12345", "admin-pass")}
-                        className="ml-2 p-1 hover:bg-accent rounded transition-colors"
+                        className="hover:bg-accent ml-2 rounded p-1 transition-colors"
                         title="Copy to clipboard"
                       >
                         {copiedItem === "admin-pass" ? (
-                          <Check className="w-3 h-3 text-green-600" />
+                          <Check className="h-3 w-3 text-green-600" />
                         ) : (
-                          <Copy className="w-3 h-3 text-muted-foreground" />
+                          <Copy className="text-muted-foreground h-3 w-3" />
                         )}
                       </button>
                     </div>
@@ -235,37 +222,33 @@ export default function LoginPage() {
                     <p className="font-semibold">User:</p>
                     <div className="flex items-center">
                       <span className="text-muted-foreground">Email:</span>
-                      <code className="ml-1 bg-background px-2 py-0.5 rounded border">
+                      <code className="bg-background ml-1 rounded border px-2 py-0.5">
                         user@test.com
                       </code>
                       <button
-                        onClick={() =>
-                          copyToClipboard("user@test.com", "user-email")
-                        }
-                        className="ml-2 p-1 hover:bg-accent rounded transition-colors"
+                        onClick={() => copyToClipboard("user@test.com", "user-email")}
+                        className="hover:bg-accent ml-2 rounded p-1 transition-colors"
                         title="Copy to clipboard"
                       >
                         {copiedItem === "user-email" ? (
-                          <Check className="w-3 h-3 text-green-600" />
+                          <Check className="h-3 w-3 text-green-600" />
                         ) : (
-                          <Copy className="w-3 h-3 text-muted-foreground" />
+                          <Copy className="text-muted-foreground h-3 w-3" />
                         )}
                       </button>
                     </div>
-                    <div className="flex items-center mt-1">
+                    <div className="mt-1 flex items-center">
                       <span className="text-muted-foreground">Pass:</span>
-                      <code className="ml-1 bg-background px-2 py-0.5 rounded border">
-                        12345
-                      </code>
+                      <code className="bg-background ml-1 rounded border px-2 py-0.5">12345</code>
                       <button
                         onClick={() => copyToClipboard("12345", "user-pass")}
-                        className="ml-2 p-1 hover:bg-accent rounded transition-colors"
+                        className="hover:bg-accent ml-2 rounded p-1 transition-colors"
                         title="Copy to clipboard"
                       >
                         {copiedItem === "user-pass" ? (
-                          <Check className="w-3 h-3 text-green-600" />
+                          <Check className="h-3 w-3 text-green-600" />
                         ) : (
-                          <Copy className="w-3 h-3 text-muted-foreground" />
+                          <Copy className="text-muted-foreground h-3 w-3" />
                         )}
                       </button>
                     </div>

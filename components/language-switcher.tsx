@@ -16,8 +16,7 @@ import { useEffect } from "react";
 function getLocaleLabels(): Record<Locale, string> {
   const labels = {} as Record<Locale, string>;
   for (const code of LOCALES) {
-    labels[code as Locale] =
-      siteConfig.languages.locales[code]?.nativeName ?? code;
+    labels[code as Locale] = siteConfig.languages.locales[code]?.nativeName ?? code;
   }
   return labels;
 }
@@ -74,13 +73,13 @@ export default function LanguageSwitcher({
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button className="group flex items-center justify-between rounded-md px-2 hover:bg-accent/60 transition-all flex-1 w-full text-left border-0 bg-transparent cursor-pointer">
-            <div className="flex items-center gap-2 min-w-0">
-              <span className="text-[11px] font-medium text-muted-foreground group-hover:text-foreground transition-colors truncate">
+          <button className="group hover:bg-accent/60 flex w-full flex-1 cursor-pointer items-center justify-between rounded-md border-0 bg-transparent px-2 text-left transition-all">
+            <div className="flex min-w-0 items-center gap-2">
+              <span className="text-muted-foreground group-hover:text-foreground truncate text-[11px] font-medium transition-colors">
                 {title}
               </span>
             </div>
-            <div className="flex items-center justify-center h-9 w-9">
+            <div className="flex h-9 w-9 items-center justify-center">
               <Languages className="h-4 w-4" />
             </div>
             <span className="sr-only">Change language</span>

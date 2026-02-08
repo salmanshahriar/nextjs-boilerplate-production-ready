@@ -18,7 +18,7 @@ export default function TextLink({
         "text-foreground",
         variant === "default" && "no-underline",
         variant === "underlined" && "text-foreground/50 underline",
-        className,
+        className
       )}
       {...props}
     >

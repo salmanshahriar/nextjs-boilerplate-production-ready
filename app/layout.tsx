@@ -110,15 +110,8 @@ export default function RootLayout({
         />
 
         {/* SEO Meta */}
-        {siteConfig.description && (
-          <meta name="description" content={siteConfig.description} />
-        )}
-        {baseUrl && (
-          <link
-            rel="canonical"
-            href={`${baseUrl}${siteConfig.canonicalPath}`}
-          />
-        )}
+        {siteConfig.description && <meta name="description" content={siteConfig.description} />}
+        {baseUrl && <link rel="canonical" href={`${baseUrl}${siteConfig.canonicalPath}`} />}
       </head>
       <body className="font-sans antialiased">
         <ThemeProvider
@@ -130,7 +123,7 @@ export default function RootLayout({
           <SessionProvider>
             <AuthProvider>
               <LanguageProvider>
-                <div className="flex flex-col min-h-screen">
+                <div className="flex min-h-screen flex-col">
                   <ClientLayout>{children}</ClientLayout>
                 </div>
               </LanguageProvider>
@@ -150,13 +143,9 @@ export default function RootLayout({
                 "@type": "Organization",
                 "@id": `${baseUrl}/#organization`,
                 name: siteConfig.organization.name,
-                legalName:
-                  siteConfig.organization.legalName ||
-                  siteConfig.organization.name,
+                legalName: siteConfig.organization.legalName || siteConfig.organization.name,
                 url: baseUrl,
-                logo: siteConfig.images.logo
-                  ? `${baseUrl}${siteConfig.images.logo}`
-                  : undefined,
+                logo: siteConfig.images.logo ? `${baseUrl}${siteConfig.images.logo}` : undefined,
                 description: siteConfig.organization.description,
                 email: siteConfig.organization.email || undefined,
                 telephone: siteConfig.organization.phone || undefined,
@@ -169,8 +158,7 @@ export default function RootLayout({
                       addressLocality: siteConfig.organization.address.city,
                       addressRegion: siteConfig.organization.address.region,
                       postalCode: siteConfig.organization.address.postalCode,
-                      addressCountry:
-                        siteConfig.organization.address.countryCode,
+                      addressCountry: siteConfig.organization.address.countryCode,
                     }
                   : undefined,
               }),
@@ -194,8 +182,7 @@ export default function RootLayout({
                 name: siteConfig.appName,
                 description: siteConfig.description,
                 url: baseUrl,
-                applicationCategory:
-                  siteConfig.applicationCategory || "WebApplication",
+                applicationCategory: siteConfig.applicationCategory || "WebApplication",
                 applicationSubCategory: siteConfig.appType || undefined,
                 operatingSystem: "Web Browser",
                 offers: siteConfig.pricing.model
@@ -222,9 +209,7 @@ export default function RootLayout({
                     }
                   : undefined,
                 featureList: siteConfig.features.filter(Boolean),
-                screenshot: siteConfig.images.og
-                  ? `${baseUrl}${siteConfig.images.og}`
-                  : undefined,
+                screenshot: siteConfig.images.og ? `${baseUrl}${siteConfig.images.og}` : undefined,
               }),
             }}
           />
@@ -260,33 +245,32 @@ export default function RootLayout({
         )}
 
         {/* Service Schema - For SaaS/Service-based applications */}
-        {siteConfig.appType &&
-          siteConfig.appType.toLowerCase().includes("saas") && (
-            <Script
-              id="schema-service"
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "Service",
-                  "@id": `${baseUrl}/#service`,
-                  name: siteConfig.appName,
-                  description: siteConfig.description,
-                  provider: siteConfig.organization.name
-                    ? {
-                        "@id": `${baseUrl}/#organization`,
-                      }
-                    : undefined,
-                  serviceType: siteConfig.appType,
-                  areaServed: "Worldwide",
-                  availableChannel: {
-                    "@type": "ServiceChannel",
-                    serviceUrl: baseUrl,
-                  },
-                }),
-              }}
-            />
-          )}
+        {siteConfig.appType && siteConfig.appType.toLowerCase().includes("saas") && (
+          <Script
+            id="schema-service"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Service",
+                "@id": `${baseUrl}/#service`,
+                name: siteConfig.appName,
+                description: siteConfig.description,
+                provider: siteConfig.organization.name
+                  ? {
+                      "@id": `${baseUrl}/#organization`,
+                    }
+                  : undefined,
+                serviceType: siteConfig.appType,
+                areaServed: "Worldwide",
+                availableChannel: {
+                  "@type": "ServiceChannel",
+                  serviceUrl: baseUrl,
+                },
+              }),
+            }}
+          />
+        )}
       </body>
     </html>
   );

@@ -9,8 +9,10 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/",
     scope: "/",
     lang: siteConfig.language,
-    dir: (siteConfig.languages.locales[siteConfig.languages.default]
-      ?.direction ?? "ltr") as "ltr" | "rtl" | "auto",
+    dir: (siteConfig.languages.locales[siteConfig.languages.default]?.direction ?? "ltr") as
+      | "ltr"
+      | "rtl"
+      | "auto",
     display: "standalone",
     orientation: "portrait-primary",
     background_color: siteConfig.theme.light,

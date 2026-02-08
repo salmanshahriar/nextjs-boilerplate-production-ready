@@ -4,10 +4,7 @@ import type React from "react";
 import { createContext, useContext, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useSession, signIn, signOut } from "next-auth/react";
-import type {
-  AuthUser,
-  AuthContext as AuthContextType,
-} from "@/lib/auth/types";
+import type { AuthUser, AuthContext as AuthContextType } from "@/lib/auth/types";
 import LoadingScreen from "@/components/common/loading-screen";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -32,7 +29,7 @@ function getStoredUser(): AuthUser | null {
 function sessionToAuthUser(
   id: string | undefined,
   email: string | null | undefined,
-  role: "admin" | "user" | undefined,
+  role: "admin" | "user" | undefined
 ): AuthUser {
   return {
     id: id ?? `user-${Date.now()}`,
@@ -49,11 +46,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const userFromSession =
     status === "authenticated" && session?.user
       ? sessionToAuthUser(
-          (session.user as { id?: string }).id ??
-            session.user.email ??
-            undefined,
+          (session.user as { id?: string }).id ?? session.user.email ?? undefined,
           session.user.email ?? undefined,
-          (session.user as { role?: "admin" | "user" }).role,
+          (session.user as { role?: "admin" | "user" }).role
         )
       : null;
 
@@ -92,8 +87,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     await signIn("google", { callbackUrl: "/dashboard" });
   }, []);
 
-  const isGoogleEnabled =
-    process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";
+  const isGoogleEnabled = process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";
 
   if (isLoading) {
     return <LoadingScreen />;

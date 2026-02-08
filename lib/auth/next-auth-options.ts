@@ -13,8 +13,7 @@ function getRole(email: string | null | undefined): UserRole {
 }
 
 const hasGoogleCreds =
-  Boolean(process.env.GOOGLE_CLIENT_ID) &&
-  Boolean(process.env.GOOGLE_CLIENT_SECRET);
+  Boolean(process.env.GOOGLE_CLIENT_ID) && Boolean(process.env.GOOGLE_CLIENT_SECRET);
 
 export const nextAuthOptions: NextAuthOptions = {
   providers: [
@@ -45,10 +44,8 @@ export const nextAuthOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (session.user) {
-        (session.user as { id?: string }).id = (token.id ??
-          token.sub) as string;
-        (session.user as { role?: UserRole }).role =
-          (token.role as UserRole) ?? "user";
+        (session.user as { id?: string }).id = (token.id ?? token.sub) as string;
+        (session.user as { role?: UserRole }).role = (token.role as UserRole) ?? "user";
       }
       return session;
     },

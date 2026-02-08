@@ -25,15 +25,15 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between relative">
-          <div className="flex items-center z-10">
+    <header className="border-border bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative flex h-16 items-center justify-between">
+          <div className="z-10 flex items-center">
             <Link
               href="/"
               className={cn(
-                "font-bold text-primary flex items-center gap-2.5",
-                isRtl && "flex-row-reverse",
+                "text-primary flex items-center gap-2.5 font-bold",
+                isRtl && "flex-row-reverse"
               )}
             >
               <Logo size={28} className="h-7 w-7" />
@@ -43,14 +43,14 @@ export default function Header() {
             </Link>
           </div>
 
-          <nav className="hidden md:flex items-center gap-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <nav className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-1 md:flex">
             <Link
               href="/"
               className={cn(
-                "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                "rounded-md px-3 py-2 text-sm font-medium transition-colors",
                 pathname === "/"
                   ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-accent",
+                  : "text-muted-foreground hover:text-foreground hover:bg-accent"
               )}
             >
               {t("navigation.home")}
@@ -58,10 +58,10 @@ export default function Header() {
             <Link
               href="/about"
               className={cn(
-                "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                "rounded-md px-3 py-2 text-sm font-medium transition-colors",
                 pathname === "/about"
                   ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-accent",
+                  : "text-muted-foreground hover:text-foreground hover:bg-accent"
               )}
             >
               {t("navigation.about")}
@@ -70,10 +70,10 @@ export default function Header() {
               <Link
                 href="/dashboard"
                 className={cn(
-                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
                   pathname?.startsWith("/dashboard")
                     ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent",
+                    : "text-muted-foreground hover:text-foreground hover:bg-accent"
                 )}
               >
                 {t("navigation.dashboard")}
@@ -81,26 +81,21 @@ export default function Header() {
             )}
           </nav>
 
-          <div className="hidden md:flex items-center gap-2 z-10">
-            <div className="flex items-center gap-1 border-r border-border pr-2 mr-2">
+          <div className="z-10 hidden items-center gap-2 md:flex">
+            <div className="border-border mr-2 flex items-center gap-1 border-r pr-2">
               <ThemeToggle />
               <LanguageSwitcher />
             </div>
 
             {user ? (
               <div className="flex items-center gap-2">
-                <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-muted/50">
-                  <div className="h-2 w-2 rounded-full bg-primary shrink-0" />
-                  <span className="text-xs text-muted-foreground truncate max-w-[120px]">
+                <div className="bg-muted/50 flex items-center gap-2 rounded-md px-3 py-2">
+                  <div className="bg-primary h-2 w-2 shrink-0 rounded-full" />
+                  <span className="text-muted-foreground max-w-[120px] truncate text-xs">
                     {user.email}
                   </span>
                 </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-8 text-xs"
-                  onClick={logout}
-                >
+                <Button variant="outline" size="sm" className="h-8 text-xs" onClick={logout}>
                   {t("navigation.logout")}
                 </Button>
               </div>
@@ -113,7 +108,7 @@ export default function Header() {
             )}
           </div>
 
-          <div className="flex md:hidden items-center gap-2 z-10">
+          <div className="z-10 flex items-center gap-2 md:hidden">
             <ThemeToggle />
             <LanguageSwitcher />
             <Button
@@ -122,28 +117,24 @@ export default function Header() {
               className="h-9 w-9 p-0"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              {mobileMenuOpen ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
       </div>
 
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border bg-background">
-          <div className="max-w-7xl mx-auto px-4 py-4 space-y-3">
+        <div className="border-border bg-background border-t md:hidden">
+          <div className="mx-auto max-w-7xl space-y-3 px-4 py-4">
             <nav className="flex flex-col gap-1">
               <Link
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
                 className={cn(
-                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
                   pathname === "/"
                     ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent",
+                    : "text-muted-foreground hover:text-foreground hover:bg-accent"
                 )}
               >
                 {t("navigation.home")}
@@ -152,10 +143,10 @@ export default function Header() {
                 href="/about"
                 onClick={() => setMobileMenuOpen(false)}
                 className={cn(
-                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
                   pathname === "/about"
                     ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent",
+                    : "text-muted-foreground hover:text-foreground hover:bg-accent"
                 )}
               >
                 {t("navigation.about")}
@@ -165,10 +156,10 @@ export default function Header() {
                   href="/dashboard"
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
-                    "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                    "rounded-md px-3 py-2 text-sm font-medium transition-colors",
                     pathname?.startsWith("/dashboard")
                       ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent",
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent"
                   )}
                 >
                   {t("navigation.dashboard")}
@@ -176,14 +167,12 @@ export default function Header() {
               )}
             </nav>
 
-            <div className="pt-3 border-t border-border">
+            <div className="border-border border-t pt-3">
               {user ? (
                 <div className="space-y-3">
-                  <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-muted/50">
-                    <div className="h-2 w-2 rounded-full bg-primary shrink-0" />
-                    <span className="text-xs text-muted-foreground truncate">
-                      {user.email}
-                    </span>
+                  <div className="bg-muted/50 flex items-center gap-2 rounded-md px-3 py-2">
+                    <div className="bg-primary h-2 w-2 shrink-0 rounded-full" />
+                    <span className="text-muted-foreground truncate text-xs">{user.email}</span>
                   </div>
                   <Button
                     variant="outline"
