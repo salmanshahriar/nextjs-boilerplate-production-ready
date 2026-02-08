@@ -19,7 +19,7 @@
 ## 🎯 Overview
 
 This boilerplate eliminates weeks of setup work by providing a production-ready foundation for Next.js applications. Built with modern best practices, it includes authentication, internationalization, role-based access control, SEO optimization, and a complete design system. <br/><br/>
-<img src="https://nextjs-boilerplate-production-ready.vercel.app/og-image.png" alt="Next.js Production-Ready Boilerplate screenshot showing multi-language support, RBAC, and Tailwind UI">
+<img src="https://nextjs-boilerplate-production-ready.vercel.app/og-image.webp" alt="Next.js Production-Ready Boilerplate screenshot showing multi-language support, RBAC, and Tailwind UI">
 
 
 ## ✨ Features
