@@ -130,9 +130,9 @@ export default function RootLayout({
           <SessionProvider>
             <AuthProvider>
               <LanguageProvider>
-              <div className="flex flex-col min-h-screen">
-                <ClientLayout>{children}</ClientLayout>
-              </div>
+                <div className="flex flex-col min-h-screen">
+                  <ClientLayout>{children}</ClientLayout>
+                </div>
               </LanguageProvider>
             </AuthProvider>
           </SessionProvider>

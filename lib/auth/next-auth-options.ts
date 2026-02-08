@@ -23,14 +23,14 @@ export const nextAuthOptions: NextAuthOptions = {
           GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-        },
-      },
-    }),
+            authorization: {
+              params: {
+                prompt: "consent",
+                access_type: "offline",
+                response_type: "code",
+              },
+            },
+          }),
         ]
       : []),
   ],
@@ -45,8 +45,10 @@ export const nextAuthOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (session.user) {
-        (session.user as { id?: string }).id = (token.id ?? token.sub) as string;
-        (session.user as { role?: UserRole }).role = (token.role as UserRole) ?? "user";
+        (session.user as { id?: string }).id = (token.id ??
+          token.sub) as string;
+        (session.user as { role?: UserRole }).role =
+          (token.role as UserRole) ?? "user";
       }
       return session;
     },

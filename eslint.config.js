@@ -1,9 +1,15 @@
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
 import prettierConfig from "eslint-config-prettier";
 import prettier from "eslint-plugin-prettier";
 import globals from "globals";
+import { FlatCompat } from "@eslint/eslintrc";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const compat = new FlatCompat({ baseDirectory: __dirname });
+const nextVitalsFlat = compat.extends("next/core-web-vitals");
+const nextTsFlat = compat.extends("next/typescript");
 
 /** @type {import('eslint').Linter.Config[]} */
 const config = [
@@ -23,8 +29,8 @@ const config = [
     ],
   },
   js.configs.recommended,
-  ...nextVitals,
-  ...nextTs,
+  ...nextVitalsFlat,
+  ...nextTsFlat,
 
   {
     languageOptions: {

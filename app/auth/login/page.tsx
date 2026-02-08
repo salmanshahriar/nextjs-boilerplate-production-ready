@@ -23,7 +23,8 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const router = useRouter();
-  const { login, user, isLoading, signInWithGoogle, isGoogleEnabled } = useAuth();
+  const { login, user, isLoading, signInWithGoogle, isGoogleEnabled } =
+    useAuth();
   const { locale } = useLanguage();
   const messages = getTranslations(locale);
   const { t } = useTranslations(messages);

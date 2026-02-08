@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { createContext, useContext, useState, useEffect, useCallback } from "react";
+import { createContext, useContext, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useSession, signIn, signOut } from "next-auth/react";
 import type {
@@ -32,7 +32,7 @@ function getStoredUser(): AuthUser | null {
 function sessionToAuthUser(
   id: string | undefined,
   email: string | null | undefined,
-  role: "admin" | "user" | undefined
+  role: "admin" | "user" | undefined,
 ): AuthUser {
   return {
     id: id ?? `user-${Date.now()}`,
@@ -43,47 +43,40 @@ function sessionToAuthUser(
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
-  const [demoUser, setDemoUser] = useState<AuthUser | null>(null);
-  const [demoLoaded, setDemoLoaded] = useState(false);
+  const [demoUser, setDemoUser] = useState<AuthUser | null>(getStoredUser);
   const router = useRouter();
-
-  useEffect(() => {
-    setDemoUser(getStoredUser());
-    setDemoLoaded(true);
-  }, []);
 
   const userFromSession =
     status === "authenticated" && session?.user
       ? sessionToAuthUser(
-          (session.user as { id?: string }).id ?? session.user.email ?? undefined,
+          (session.user as { id?: string }).id ??
+            session.user.email ??
+            undefined,
           session.user.email ?? undefined,
-          (session.user as { role?: "admin" | "user" }).role
+          (session.user as { role?: "admin" | "user" }).role,
         )
       : null;
 
-  const user = userFromSession ?? (demoLoaded ? demoUser : null);
-  const isLoading = status === "loading" || !demoLoaded;
+  const user = userFromSession ?? demoUser;
+  const isLoading = status === "loading";
 
-  const login = useCallback(
-    async (email: string, password: string) => {
-      let role: "admin" | "user" | null = null;
-      if (email === DEMO_ADMIN.email && password === DEMO_ADMIN.password) {
-        role = "admin";
-      } else if (email === DEMO_USER.email && password === DEMO_USER.password) {
-        role = "user";
-      } else {
-        throw new Error("Invalid credentials");
-      }
-      const mockUser: AuthUser = {
-        id: "user-" + Date.now(),
-        email,
-        role,
-      };
-      setDemoUser(mockUser);
-      localStorage.setItem("user", JSON.stringify(mockUser));
-    },
-    []
-  );
+  const login = useCallback(async (email: string, password: string) => {
+    let role: "admin" | "user" | null = null;
+    if (email === DEMO_ADMIN.email && password === DEMO_ADMIN.password) {
+      role = "admin";
+    } else if (email === DEMO_USER.email && password === DEMO_USER.password) {
+      role = "user";
+    } else {
+      throw new Error("Invalid credentials");
+    }
+    const mockUser: AuthUser = {
+      id: "user-" + Date.now(),
+      email,
+      role,
+    };
+    setDemoUser(mockUser);
+    localStorage.setItem("user", JSON.stringify(mockUser));
+  }, []);
 
   const logout = useCallback(() => {
     setDemoUser(null);
