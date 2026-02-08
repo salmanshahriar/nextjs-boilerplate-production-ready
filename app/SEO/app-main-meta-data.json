@@ -11,8 +11,11 @@
   "applicationCategory": "WebApplication",
   "audience": "Developers, Businesses",
   "keywords": ["nextjs", "i18n", "rbac", "boilerplate", "multilanguage"],
-  "features": ["Multi-language Support", "Role-Based Access Control", "Production Ready"],
-
+  "features": [
+    "Multi-language Support",
+    "Role-Based Access Control",
+    "Production Ready"
+  ],
   "languages": {
     "supported": ["en", "bn", "ar"],
     "default": "en",
@@ -40,7 +43,6 @@
       }
     }
   },
-
   "organization": {
     "name": "Your Organization",
     "legalName": "Your Organization Legal Name",
@@ -59,13 +61,11 @@
       "countryCode": "US"
     }
   },
-
   "contact": {
     "supportEmail": "support@yourdomain.com",
     "salesEmail": "sales@yourdomain.com",
     "phoneNumber": "+1-234-567-8900"
   },
-
   "social": {
     "facebook": "https://facebook.com/yourpage",
     "twitter": "@yourhandle",
@@ -74,31 +74,23 @@
     "youtube": "https://youtube.com/@yourchannel",
     "github": "https://github.com/yourusername"
   },
-
   "images": {
     "og": "/og-image.png",
     "logo": "/logo.png",
     "ogWidth": 1200,
     "ogHeight": 630
   },
-
   "icons": {
     "favicon": "/favicon.ico",
     "svg": "/icon.svg",
     "appleTouchIcon": "/apple-touch-icon.png"
   },
-
-  "theme": {
-    "dark": "#000000",
-    "light": "#ffffff"
-  },
-
+  "theme": { "dark": "#000000", "light": "#ffffff" },
   "pricing": {
     "model": "freemium",
     "currency": "USD",
     "minPrice": "0",
     "maxPrice": "99"
   },
-
   "manifest": "/manifest.json"
 }

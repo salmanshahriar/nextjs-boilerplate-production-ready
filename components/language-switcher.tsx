@@ -3,6 +3,7 @@
 import { Languages } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { type Locale, LOCALES } from "@/lib/i18n/types";
+import { siteConfig } from "@/lib/config/site";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,11 +13,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useEffect } from "react";
 
-const localeLabels: Record<Locale, string> = {
-  bn: "বাংলা",
-  en: "English",
-  ar: "العربية",
-};
+function getLocaleLabels(): Record<Locale, string> {
+  const labels = {} as Record<Locale, string>;
+  for (const code of LOCALES) {
+    labels[code as Locale] =
+      siteConfig.languages.locales[code]?.nativeName ?? code;
+  }
+  return labels;
+}
+
+const localeLabels = getLocaleLabels();
 
 interface LanguageSwitcherProps {
   variant?: "default" | "titled";

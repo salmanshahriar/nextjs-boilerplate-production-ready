@@ -1,22 +1,24 @@
-// Type definitions for i18n system
-export type Locale = "bn" | "en" | "ar";
-
-export const LOCALES: Locale[] = ["bn", "en", "ar"];
-export const DEFAULT_LOCALE: Locale = "en";
+export type { Locale } from "@/lib/config/site";
+export {
+  supportedLocales as LOCALES,
+  defaultLocale as DEFAULT_LOCALE,
+} from "@/lib/config/site";
 
 export interface Translations {
   [key: string]: string | Translations;
 }
 
 export interface I18nConfig {
-  locales: Locale[];
-  defaultLocale: Locale;
+  locales: readonly string[];
+  defaultLocale: string;
   localeDetection: boolean;
 }
 
+import { supportedLocales, defaultLocale } from "@/lib/config/site";
+
 export const i18nConfig: I18nConfig = {
-  locales: LOCALES,
-  defaultLocale: DEFAULT_LOCALE,
+  locales: supportedLocales,
+  defaultLocale,
   localeDetection: true,
 };
 

@@ -91,6 +91,11 @@ This boilerplate eliminates weeks of setup work by providing a production-ready 
    http://localhost:3000
    ```
 
+### First-time setup
+
+1. Copy `.env.example` to `.env` and set `NEXT_PUBLIC_APP_URL` if you need to override the site URL (e.g. in production).
+2. Edit **`app/seo/app-main-meta-data.json`** — this is the main config for app name, domain, SEO, languages, organization, and theme. Sitemap, robots, and manifest are generated from it.
+
 ## 📁 Project Structure
 
 ```
@@ -102,28 +107,26 @@ This boilerplate eliminates weeks of setup work by providing a production-ready 
 │   │   ├── @user/           # User parallel route
 │   │   │   └── dashboard/   # User dashboard pages
 │   │   └── layout.tsx       # Protected layout with role-based routing
-│   ├── SEO/                 # SEO configuration
+│   ├── seo/                 # Site & SEO config (single source of truth)
 │   │   └── app-main-meta-data.json
 │   ├── layout.tsx           # Root layout
 │   └── page.tsx             # Landing page
 ├── components/
 │   ├── ui/                  # shadcn/ui components
 │   └── ...                  # Custom components
-├── locales/                 # Translation files
-│   ├── en/                  # English translations
-│   ├── bn/                  # Bengali translations
-│   └── ar/                  # Arabic translations
+├── locales/                 # Translation files (en.json, bn.json, ar.json)
 ├── lib/
-│   ├── i18n.ts             # i18n configuration
-│   └── utils.ts            # Utility functions
+│   ├── config/              # Central config (site, baseUrl)
+│   ├── i18n/                # i18n (locales from app-main-meta-data.json)
+│   └── utils.ts
 └── public/                  # Static assets
 ```
 
 ## ⚙️ Configuration
 
-### SEO Configuration
+### Site & SEO configuration
 
-Edit `app/SEO/app-main-meta-data.json` to customize your app's metadata:
+Edit **`app/seo/app-main-meta-data.json`** to customize app name, domain, SEO, languages, organization, theme. It drives metadata, sitemap, robots, manifest, and i18n locales.
 
 ```json
 {
@@ -228,144 +231,17 @@ Edit `app/SEO/app-main-meta-data.json` to customize your app's metadata:
     "maxPrice": "99"
   },
 
-  "manifest": "/manifest.json"
-}{
-  "appName": "Next.js Boilerplate",
-  "appType": "SaaS Platform",
-  "tagline": "Your Tagline Here",
-  "title": "Next.js i18n & Role-Based Access Boilerplate",
-  "description": "Production-ready Next.js boilerplate with multi-language support (i18n) and role-based access control (RBAC)",
-  "locale": "en_US",
-  "language": "en-US",
-  "domain": "https://yourdomain.com",
-  "canonicalPath": "/",
-  "applicationCategory": "WebApplication",
-  "audience": "Developers, Businesses",
-  "keywords": ["nextjs", "i18n", "rbac", "boilerplate", "multilanguage"],
-  "features": ["Multi-language Support", "Role-Based Access Control", "Production Ready"],
-
-  "languages": {
-    "supported": ["en", "bn", "ar"],
-    "default": "en",
-    "locales": {
-      "en": {
-        "code": "en",
-        "name": "English",
-        "nativeName": "English",
-        "locale": "en_US",
-        "direction": "ltr"
-      },
-      "bn": {
-        "code": "bn",
-        "name": "Bengali",
-        "nativeName": "বাংলা",
-        "locale": "bn_BD",
-        "direction": "ltr"
-      },
-      "ar": {
-        "code": "ar",
-        "name": "Arabic",
-        "nativeName": "العربية",
-        "locale": "ar_SA",
-        "direction": "rtl"
-      }
-    }
-  },
-
-  "organization": {
-    "name": "Your Organization",
-    "legalName": "Your Organization Legal Name",
-    "url": "https://yourdomain.com",
-    "logo": "/logo.png",
-    "description": "Your organization description",
-    "foundingDate": "2024-01-01",
-    "email": "contact@yourdomain.com",
-    "phone": "+1-234-567-8900",
-    "address": {
-      "street": "123 Main Street",
-      "city": "New York",
-      "region": "NY",
-      "postalCode": "10001",
-      "country": "United States",
-      "countryCode": "US"
-    }
-  },
-
-  "contact": {
-    "supportEmail": "support@yourdomain.com",
-    "salesEmail": "sales@yourdomain.com",
-    "phoneNumber": "+1-234-567-8900"
-  },
-
-  "social": {
-    "facebook": "https://facebook.com/yourpage",
-    "twitter": "@yourhandle",
-    "linkedin": "https://linkedin.com/company/yourcompany",
-    "instagram": "https://instagram.com/yourhandle",
-    "youtube": "https://youtube.com/@yourchannel",
-    "github": "https://github.com/yourusername"
-  },
-
-  "images": {
-    "og": "/og-image.png",
-    "logo": "/logo.png",
-    "ogWidth": 1200,
-    "ogHeight": 630
-  },
-
-  "icons": {
-    "favicon": "/favicon.ico",
-    "svg": "/icon.svg",
-    "appleTouchIcon": "/apple-touch-icon.png"
-  },
-
-  "theme": {
-    "dark": "#000000",
-    "light": "#ffffff"
-  },
-
-  "pricing": {
-    "model": "freemium",
-    "currency": "USD",
-    "minPrice": "0",
-    "maxPrice": "99"
-  },
-
-  "manifest": "/manifest.json"
+  "manifest": "/manifest.webmanifest"
 }
 ```
 
 ### Adding a New Language
 
-1. Create translation file `locales/[lang]/common.json`:
-   ```json
-   {
-     "navigation": {
-       "home": "Home",
-       "about": "About"
-     }
-   }
-   ```
-
-2. Update `app-main-meta-data.json` with new language configuration:
-   ```json
-   {
-     "languages": {
-       "supported": ["en", "bn", "ar", "es"],
-       "locales": {
-         "es": {
-           "code": "es",
-           "name": "Spanish",
-           "nativeName": "Español",
-           "locale": "es_ES",
-           "direction": "ltr"
-         }
-       }
-     }
-   }
-   ```
-
-3. Update `lib/i18n.ts` to include the new language code
+1. Add **`app/seo/app-main-meta-data.json`** entry:
+   - Append the language code to `languages.supported` (e.g. `"es"`).
+   - Add an entry under `languages.locales` (e.g. `"es": { "code": "es", "name": "Spanish", "nativeName": "Español", "locale": "es_ES", "direction": "ltr" }`).
+2. Create **`locales/es.json`** (or your code) with the same structure as `locales/en.json`.
+3. In **`lib/i18n/get-translations.ts`**, import the new file and add it to the `translations` object. Add the new key to the `TranslationKeys` union in **`lib/i18n/types.ts`** if you use strict keys.
 
 ### Adding a New Role
 

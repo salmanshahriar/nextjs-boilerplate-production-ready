@@ -4,86 +4,11 @@ import { Analytics } from "@vercel/analytics/next";
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { AuthProvider } from "@/lib/auth/auth-context";
 import { ThemeProvider } from "@/components/theme-provider";
+import { siteConfig, baseUrl } from "@/lib/config/site";
 
 import Script from "next/script";
 import "./globals.css";
 import ClientLayout from "@/components/layout/client-layout";
-import seoData from "./SEO/app-main-meta-data.json";
-
-interface SiteConfig {
-  appName: string;
-  appType: string;
-  tagline: string;
-  organization: {
-    name: string;
-    legalName: string;
-    url: string;
-    logo: string;
-    description: string;
-    foundingDate: string;
-    email: string;
-    phone: string;
-    address: {
-      street: string;
-      city: string;
-      region: string;
-      postalCode: string;
-      country: string;
-      countryCode: string;
-    };
-  };
-  contact: {
-    supportEmail: string;
-    salesEmail: string;
-    phoneNumber: string;
-  };
-  domain: string;
-  canonicalPath: string;
-  social: {
-    facebook: string;
-    twitter: string;
-    linkedin: string;
-    instagram: string;
-    youtube: string;
-    github: string;
-  };
-  title: string;
-  description: string;
-  locale: string;
-  language: string;
-  keywords: string[];
-  features: string[];
-  audience: string;
-  images: {
-    og: string;
-    logo: string;
-    ogWidth: number;
-    ogHeight: number;
-  };
-  theme: {
-    dark: string;
-    light: string;
-  };
-  icons: {
-    favicon: string;
-    svg: string;
-    appleTouchIcon: string;
-  };
-  manifest: string;
-  applicationCategory: string;
-  pricing: {
-    model: string;
-    currency: string;
-    minPrice: string;
-    maxPrice: string;
-  };
-}
-
-const siteConfig = seoData as SiteConfig;
-
-// ============================================
-// METADATA FOR SEO [Fill the data on app/SEO/app-main-meta-data.json]
-// ============================================
 export const metadata: Metadata = {
   title: siteConfig.appName ? siteConfig.appName : siteConfig.title,
   description: siteConfig.description,
@@ -94,17 +19,15 @@ export const metadata: Metadata = {
   creator: siteConfig.organization.name || undefined,
   publisher: siteConfig.organization.name || undefined,
   formatDetection: { email: true, address: true, telephone: true },
-  metadataBase: siteConfig.domain ? new URL(siteConfig.domain) : undefined,
-  alternates: siteConfig.domain
-    ? { canonical: siteConfig.canonicalPath }
-    : undefined,
+  metadataBase: baseUrl ? new URL(baseUrl) : undefined,
+  alternates: baseUrl ? { canonical: siteConfig.canonicalPath } : undefined,
   applicationName: siteConfig.appName || undefined,
   category: siteConfig.applicationCategory || undefined,
   openGraph: siteConfig.appName
     ? {
         type: "website",
         locale: siteConfig.locale,
-        url: siteConfig.domain,
+        url: baseUrl,
         title: `${siteConfig.appName} | ${siteConfig.tagline}`,
         description: siteConfig.description,
         siteName: siteConfig.appName,
@@ -138,7 +61,7 @@ export const metadata: Metadata = {
     ],
     apple: siteConfig.icons.appleTouchIcon,
   },
-  manifest: siteConfig.manifest,
+  manifest: "/manifest.webmanifest",
   robots: {
     index: true,
     follow: true,
@@ -189,10 +112,10 @@ export default function RootLayout({
         {siteConfig.description && (
           <meta name="description" content={siteConfig.description} />
         )}
-        {siteConfig.domain && (
+        {baseUrl && (
           <link
             rel="canonical"
-            href={`${siteConfig.domain}${siteConfig.canonicalPath}`}
+            href={`${baseUrl}${siteConfig.canonicalPath}`}
           />
         )}
       </head>
@@ -222,14 +145,14 @@ export default function RootLayout({
               __html: JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "Organization",
-                "@id": `${siteConfig.domain}/#organization`,
+                "@id": `${baseUrl}/#organization`,
                 name: siteConfig.organization.name,
                 legalName:
                   siteConfig.organization.legalName ||
                   siteConfig.organization.name,
-                url: siteConfig.domain,
+                url: baseUrl,
                 logo: siteConfig.images.logo
-                  ? `${siteConfig.domain}${siteConfig.images.logo}`
+                  ? `${baseUrl}${siteConfig.images.logo}`
                   : undefined,
                 description: siteConfig.organization.description,
                 email: siteConfig.organization.email || undefined,
@@ -264,10 +187,10 @@ export default function RootLayout({
                   siteConfig.applicationCategory === "EducationalApplication"
                     ? "EducationalApplication"
                     : "SoftwareApplication",
-                "@id": `${siteConfig.domain}/#webapp`,
+                "@id": `${baseUrl}/#webapp`,
                 name: siteConfig.appName,
                 description: siteConfig.description,
-                url: siteConfig.domain,
+                url: baseUrl,
                 applicationCategory:
                   siteConfig.applicationCategory || "WebApplication",
                 applicationSubCategory: siteConfig.appType || undefined,
@@ -291,13 +214,13 @@ export default function RootLayout({
                 author: siteConfig.organization.name
                   ? {
                       "@type": "Organization",
-                      "@id": `${siteConfig.domain}/#organization`,
+                      "@id": `${baseUrl}/#organization`,
                       name: siteConfig.organization.name,
                     }
                   : undefined,
                 featureList: siteConfig.features.filter(Boolean),
                 screenshot: siteConfig.images.og
-                  ? `${siteConfig.domain}${siteConfig.images.og}`
+                  ? `${baseUrl}${siteConfig.images.og}`
                   : undefined,
               }),
             }}
@@ -305,7 +228,7 @@ export default function RootLayout({
         )}
 
         {/* WebSite Schema - Only render if domain is set on app/SEO/app-main-meta-data.json */}
-        {siteConfig.domain && (
+        {baseUrl && (
           <Script
             id="schema-website"
             type="application/ld+json"
@@ -313,18 +236,18 @@ export default function RootLayout({
               __html: JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "@id": `${siteConfig.domain}/#website`,
-                url: siteConfig.domain,
+                "@id": `${baseUrl}/#website`,
+                url: baseUrl,
                 name: siteConfig.appName || siteConfig.title,
                 description: siteConfig.description,
                 publisher: siteConfig.organization.name
                   ? {
-                      "@id": `${siteConfig.domain}/#organization`,
+                      "@id": `${baseUrl}/#organization`,
                     }
                   : undefined,
                 potentialAction: {
                   "@type": "SearchAction",
-                  target: `${siteConfig.domain}/search?q={search_term_string}`,
+                  target: `${baseUrl}/search?q={search_term_string}`,
                   "query-input": "required name=search_term_string",
                 },
                 inLanguage: siteConfig.language,
@@ -343,19 +266,19 @@ export default function RootLayout({
                 __html: JSON.stringify({
                   "@context": "https://schema.org",
                   "@type": "Service",
-                  "@id": `${siteConfig.domain}/#service`,
+                  "@id": `${baseUrl}/#service`,
                   name: siteConfig.appName,
                   description: siteConfig.description,
                   provider: siteConfig.organization.name
                     ? {
-                        "@id": `${siteConfig.domain}/#organization`,
+                        "@id": `${baseUrl}/#organization`,
                       }
                     : undefined,
                   serviceType: siteConfig.appType,
                   areaServed: "Worldwide",
                   availableChannel: {
                     "@type": "ServiceChannel",
-                    serviceUrl: siteConfig.domain,
+                    serviceUrl: baseUrl,
                   },
                 }),
               }}
