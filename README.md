@@ -329,11 +329,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## ⭐ Show your support
 
-**If this boilerplate saved you time, a star helps more devs discover it.**
+**[ If this boilerplate saved you time, a star helps more devs discover it ]**
 
-[![Star on GitHub](https://img.shields.io/github/stars/salmanshahriar/nextjs-boilerplate-production-ready?style=for-the-badge)](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/salmanshahriar/nextjs-boilerplate-production-ready?style=social)](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers)
 
-[![Star History Chart](https://star-history.com/api/starimg?repos=salmanshahriar/nextjs-boilerplate-production-ready&type=Date)](https://star-history.com/#salmanshahriar/nextjs-boilerplate-production-ready&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=salmanshahriar/nextjs-boilerplate-production-ready&type=date&legend=top-left)](https://www.star-history.com/#salmanshahriar/nextjs-boilerplate-production-ready&type=date&legend=top-left)
 
 [**Star the repo**](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers) · Share with your team · [Contribute](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/blob/main/README.md#-contributing)
 
