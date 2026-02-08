@@ -1,25 +1,25 @@
 <div align="center">
 <h1>Next.js Production-Ready Boilerplate</h1>
+<p><strong>Ship in days, not weeks.</strong> One config. i18n, RBAC, Google OAuth, SEO & More (ready to go).</p>
 </div>
 <div align="center">
 
 ![Next.js](https://img.shields.io/badge/Next.js-15.1.11-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+[![GitHub stars](https://img.shields.io/github/stars/salmanshahriar/nextjs-boilerplate-production-ready?style=social)](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers)
 
-**A fully-featured Next.js starter with i18n, RBAC, and everything you need to ship production apps faster**
+[**Live Demo** ↗](https://nextjs-boilerplate-production-ready.vercel.app/) · [**Use this template** ↗](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/generate) · [Report Bug ↗](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/issues) · [Request Feature ↗](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/issues)
 
-[Live Demo](https://nextjs-boilerplate-production-ready.vercel.app/) • [Report Bug](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/issues) • [Request Feature](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/issues)
-<br/><br/>
-<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/lqn07o39ssdrp9xps988.jpg">
+<img src="https://nextjs-boilerplate-production-ready.vercel.app/og-image.webp" alt="Next.js Production-Ready Boilerplate" width="720" />
+
 </div>
 
 ---
 
 ## 🎯 Overview
 
-This boilerplate eliminates weeks of setup work by providing a production-ready foundation for Next.js applications. Built with modern best practices, it includes authentication, internationalization, role-based access control, SEO optimization, and a complete design system. <br/><br/>
-<img src="https://nextjs-boilerplate-production-ready.vercel.app/og-image.webp" alt="Next.js Production-Ready Boilerplate screenshot showing multi-language support, RBAC, and Tailwind UI">
+Stop rebuilding auth, i18n, and SEO from scratch. This boilerplate gives you a **production-ready Next.js app** in one clone: type-safe i18n (with RTL), role-based access, Google sign-in, central config, robots/sitemap/manifest, dark mode, and shadcn/ui. Edit one JSON file and ship.
 
 
 ## ✨ Features
@@ -95,10 +95,9 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
    npm run dev
    ```
 
-4. **Open your browser**
-   ```
-   http://localhost:3000
-   ```
+4. **Open your browser** at `http://localhost:3000`
+
+**Like it?** [Star the repo](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready) — it helps others find it.
 
 ### First-time setup
 
@@ -328,12 +327,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-## ⭐ Show Your Support
+## ⭐ Show your support
 
-**If this project helped you, please consider giving it a star!**
+**If this boilerplate saved you time, a star helps more devs discover it.**
 
-[![GitHub stars](https://img.shields.io/github/stars/salmanshahriar/nextjs-boilerplate-production-ready?style=social)](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers)
+[![Star on GitHub](https://img.shields.io/github/stars/salmanshahriar/nextjs-boilerplate-production-ready?style=for-the-badge)](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers)
 
-**Star this repo** • **Share with others** • **Contribute**
+[![Star History Chart](https://star-history.com/api/starimg?repos=salmanshahriar/nextjs-boilerplate-production-ready&type=Date)](https://star-history.com/#salmanshahriar/nextjs-boilerplate-production-ready&Date)
+
+[**Star the repo**](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers) · Share with your team · [Contribute](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/blob/main/README.md#-contributing)
+
 </div>
 
