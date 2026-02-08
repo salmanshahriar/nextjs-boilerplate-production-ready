@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { AuthProvider } from "@/lib/auth/auth-context";
+import { SessionProvider } from "@/lib/auth/session-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig, baseUrl } from "@/lib/config/site";
 
@@ -126,13 +127,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            <LanguageProvider>
+          <SessionProvider>
+            <AuthProvider>
+              <LanguageProvider>
               <div className="flex flex-col min-h-screen">
                 <ClientLayout>{children}</ClientLayout>
               </div>
-            </LanguageProvider>
-          </AuthProvider>
+              </LanguageProvider>
+            </AuthProvider>
+          </SessionProvider>
         </ThemeProvider>
         <Analytics />
 

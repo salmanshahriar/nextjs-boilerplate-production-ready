@@ -52,6 +52,8 @@
       "invalidCredentials": "Invalid credentials. Please use the provided test accounts.",
       "fillAllFields": "Please fill in all fields",
       "testCredentials": "Test Credentials",
+      "signInWithGoogle": "Sign in with Google",
+      "orContinueWith": "Or continue with",
       "admin": "Admin",
       "user": "User"
     },

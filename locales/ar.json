@@ -52,6 +52,8 @@
       "invalidCredentials": "بيانات اعتماد غير صحيحة. يرجى استخدام حسابات الاختبار المقدمة.",
       "fillAllFields": "يرجى ملء جميع الحقول",
       "testCredentials": "بيانات الاعتماد التجريبية",
+      "signInWithGoogle": "تسجيل الدخول باستخدام Google",
+      "orContinueWith": "أو تابع باستخدام",
       "admin": "مسؤول",
       "user": "مستخدم"
     },

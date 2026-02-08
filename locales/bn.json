@@ -52,6 +52,8 @@
       "invalidCredentials": "অবৈধ credentials। অনুগ্রহ করে প্রদত্ত test accounts ব্যবহার করুন।",
       "fillAllFields": "অনুগ্রহ করে সব fields পূরণ করুন",
       "testCredentials": "Test Credentials",
+      "signInWithGoogle": "Google দিয়ে সাইন ইন করুন",
+      "orContinueWith": "অথবা দিয়ে চালিয়ে যান",
       "admin": "Admin",
       "user": "User"
     },

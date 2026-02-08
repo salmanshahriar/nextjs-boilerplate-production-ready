@@ -11,5 +11,7 @@ export interface AuthContext {
   isLoading: boolean;
   login: (_email: string, _password: string) => Promise<void>;
   logout: () => void;
+  signInWithGoogle: () => Promise<void>;
   isAuthenticated: boolean;
+  isGoogleEnabled: boolean;
 }

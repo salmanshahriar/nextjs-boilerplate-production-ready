@@ -65,6 +65,8 @@ export type TranslationKeys =
   | "auth.login.invalidCredentials"
   | "auth.login.fillAllFields"
   | "auth.login.testCredentials"
+  | "auth.login.signInWithGoogle"
+  | "auth.login.orContinueWith"
   | "auth.login.admin"
   | "auth.login.user"
   | "auth.logout.title"

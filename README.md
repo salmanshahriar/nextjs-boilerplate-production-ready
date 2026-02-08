@@ -3,7 +3,7 @@
 </div>
 <div align="center">
 
-![Next.js](https://img.shields.io/badge/Next.js-16.0.8-black?style=for-the-badge&logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-15.1.11-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
@@ -37,6 +37,11 @@ This boilerplate eliminates weeks of setup work by providing a production-ready 
   - RTL layout support for Arabic
   - Easy addition of new languages
   
+- 🔐 **Authentication** - NextAuth.js with optional Google OAuth and demo credentials
+  - Sign in with Google (configurable via env)
+  - Admin role via `AUTH_ADMIN_EMAILS` for OAuth users
+  - Fallback email/password for local testing
+
 - 🔐 **Role-Based Access Control** - Scalable RBAC using Next.js 15 parallel routes
   - Pre-configured User and Admin roles
   - Automatic role-based dashboard routing
@@ -61,6 +66,10 @@ This boilerplate eliminates weeks of setup work by providing a production-ready 
 
 - Node.js 18.17 or later
 - npm, yarn, pnpm, or bun
+
+### Next.js version
+
+This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. You can use Next.js 16 if you prefer, but 15 is recommended to avoid known security issues and to keep compatibility with the ecosystem (e.g. NextAuth.js). Stay on the latest 15.x patch for security updates.
 
 ### Installation
 
@@ -95,6 +104,7 @@ This boilerplate eliminates weeks of setup work by providing a production-ready 
 
 1. Copy `.env.example` to `.env` and set `NEXT_PUBLIC_APP_URL` if you need to override the site URL (e.g. in production).
 2. Edit **`app/seo/app-main-meta-data.json`** — this is the main config for app name, domain, SEO, languages, organization, and theme. Sitemap, robots, and manifest are generated from it.
+3. For **Google sign-in**: set `NEXTAUTH_URL`, `NEXTAUTH_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` in `.env`, then set `NEXT_PUBLIC_GOOGLE_AUTH_ENABLED=true`. See [Google OAuth setup](#google-oauth-setup) below.
 
 ## 📁 Project Structure
 
@@ -243,6 +253,13 @@ Edit **`app/seo/app-main-meta-data.json`** to customize app name, domain, SEO, l
 2. Create **`locales/es.json`** (or your code) with the same structure as `locales/en.json`.
 3. In **`lib/i18n/get-translations.ts`**, import the new file and add it to the `translations` object. Add the new key to the `TranslationKeys` union in **`lib/i18n/types.ts`** if you use strict keys.
 
+### Google OAuth setup
+
+1. **Google Cloud Console**: Go to [APIs & Credentials](https://console.cloud.google.com/apis/credentials) and create an OAuth 2.0 Client ID (Web application).
+2. **Authorized redirect URI**: Add `http://localhost:3000/api/auth/callback/google` (dev) and your production URL (e.g. `https://yourdomain.com/api/auth/callback/google`).
+3. **`.env`**: Set `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `NEXTAUTH_URL` (e.g. `http://localhost:3000`), and `NEXTAUTH_SECRET` (e.g. `openssl rand -base64 32`). Set `NEXT_PUBLIC_GOOGLE_AUTH_ENABLED=true` to show the Google sign-in button.
+4. **Admin role**: Optionally set `AUTH_ADMIN_EMAILS=admin@yourdomain.com` (comma-separated) so those Google accounts get the admin role.
+
 ### Adding a New Role
 
 1. Create a new parallel route folder:
@@ -269,11 +286,12 @@ Edit **`app/seo/app-main-meta-data.json`** to customize app name, domain, SEO, l
 
 ## 🧪 Tech Stack
 
-- **Framework:** Next.js 15
+- **Framework:** Next.js 15.1.11 (App Router)
 - **Language:** TypeScript
+- **Auth:** NextAuth.js (Google OAuth, JWT session)
 - **Styling:** Tailwind CSS
 - **Components:** shadcn/ui
-- **Internationalization:** i18next, react-i18next
+- **Internationalization:** Type-safe i18n (locales from config)
 - **Code Quality:** ESLint, TypeScript strict mode
 - **Icons:** Lucide React
 
