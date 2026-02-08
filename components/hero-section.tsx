@@ -4,8 +4,9 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { getTranslations } from "@/lib/i18n/get-translations";
 import { useTranslations } from "@/lib/i18n/use-translations";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { siteConfig } from "@/lib/config/site";
 
-export default function AboutPage() {
+export default function HeroSection() {
   const { locale } = useLanguage();
   const messages = getTranslations(locale);
   const { t } = useTranslations(messages);
@@ -14,7 +15,7 @@ export default function AboutPage() {
   const features = [
     {
       icon: "🌐",
-      title: "i18next Multi-Language",
+      title: "i18n Multi-Language",
       description: t("home.features.typeSafe"),
       details: [
         "Type-safe translations",
@@ -24,16 +25,30 @@ export default function AboutPage() {
     },
     {
       icon: "🔐",
-      title: "Role-Based Access Control",
+      title: "Auth & RBAC",
       description: t("home.features.rbac"),
-      details: ["User & Admin roles", "Protected routes", "Parallel routes"],
+      details: [
+        "NextAuth.js + Google OAuth",
+        "User & Admin roles",
+        "Protected routes, parallel routes",
+      ],
+    },
+    {
+      icon: "📄",
+      title: "Central Config",
+      description: t("home.features.production"),
+      details: [
+        "Single JSON: lib/config/app-main-meta-data.json",
+        "Drives SEO, i18n locales, baseUrl",
+        "Env override (NEXT_PUBLIC_APP_URL)",
+      ],
     },
     {
       icon: "🚀",
       title: "Next.js + TypeScript + Tailwind",
       description: t("home.features.stack"),
       details: [
-        "Next.js 15 + Eslint Setup",
+        "Next.js 15 + ESLint flat config",
         "TypeScript",
         "Tailwind CSS + shadcn/ui",
       ],
@@ -46,15 +61,13 @@ export default function AboutPage() {
     },
     {
       icon: "🔍",
-      title: "SEO Optimized",
+      title: "SEO & Discovery",
       description: t("home.features.seo"),
-      details: ["Dynamic metadata", "Detailed SEO", "Performance optimized"],
-    },
-    {
-      icon: "👨‍💻",
-      title: "Built by Salman Shahriar",
-      description: "",
-      details: [],
+      details: [
+        "Dynamic metadata, JSON-LD",
+        "robots.txt & sitemap.xml from config",
+        "Dynamic PWA manifest",
+      ],
     },
   ];
 
@@ -64,18 +77,49 @@ export default function AboutPage() {
         isRtl ? "text-right" : "text-left"
       }`}
     >
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold mb-4 bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-          Next.js Production-Ready Boilerplate
-        </h1>
-      </div>
+      <Card className="hover:shadow-lg transition-shadow mb-6">
+        <CardContent className="py-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 className="text-5xl font-bold bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                {siteConfig.appName || siteConfig.title}
+              </h1>
+              {siteConfig.tagline && (
+                <p className="text-lg text-muted-foreground mt-2">
+                  {siteConfig.tagline}
+                </p>
+              )}
+            </div>
+            <div className="flex flex-col gap-3">
+              <a
+                href="https://github.com/salmanshahriar/nextjs-boilerplate-production-ready"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors text-sm font-medium"
+              >
+                💻 Source code (GitHub)
+              </a>
+              <a
+                href="https://salmanshahriar.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors text-sm font-medium"
+              >
+                🌐 Built by Salman Shahriar
+              </a>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {features.map((feature, index) => (
           <Card key={index} className="hover:shadow-lg transition-shadow">
             <CardHeader>
-              <div className="text-4xl mb-2">{feature.icon}</div>
-              <CardTitle className="text-lg">{feature.title}</CardTitle>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">{feature.icon}</span>
+                <CardTitle className="text-lg">{feature.title}</CardTitle>
+              </div>
             </CardHeader>
             <CardContent>
               {feature.description && (
@@ -83,38 +127,17 @@ export default function AboutPage() {
                   {feature.description}
                 </p>
               )}
-              {feature.details.length > 0 ? (
-                <ul className="space-y-1">
-                  {feature.details.map((detail, i) => (
-                    <li
-                      key={i}
-                      className="text-xs text-muted-foreground flex items-center gap-2"
-                    >
-                      <span className="text-primary">✓</span>
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <div className="flex gap-3 mt-2">
-                  <a
-                    href="https://github.com/salmanshahriar/nextjs-boilerplate-production-ready"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors text-sm font-medium"
+              <ul className="space-y-1">
+                {feature.details.map((detail, i) => (
+                  <li
+                    key={i}
+                    className="text-xs text-muted-foreground flex items-center gap-2"
                   >
-                    💻 Source code (GitHub)
-                  </a>
-                  <a
-                    href="https://salmanshahriar.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors text-sm font-medium"
-                  >
-                    🌐 My Website
-                  </a>
-                </div>
-              )}
+                    <span className="text-primary">✓</span>
+                    {detail}
+                  </li>
+                ))}
+              </ul>
             </CardContent>
           </Card>
         ))}

@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Globe, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { getTranslations } from "@/lib/i18n/get-translations";
 import { useTranslations } from "@/lib/i18n/use-translations";
 import { useAuth } from "@/lib/auth/auth-context";
+import { siteConfig } from "@/lib/config/site";
+import { Logo } from "@/components/logo";
 import LanguageSwitcher from "../language-switcher";
 import { ThemeToggle } from "../theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -34,9 +36,9 @@ export default function Header() {
                 isRtl && "flex-row-reverse",
               )}
             >
-              <Globe className="h-5 w-5 shrink-0" />
+              <Logo size={28} className="h-7 w-7" />
               <div className="flex flex-col text-lg leading-tight font-semibold whitespace-nowrap">
-                Next.js Boilerplate
+                {siteConfig.appName || siteConfig.title}
               </div>
             </Link>
           </div>

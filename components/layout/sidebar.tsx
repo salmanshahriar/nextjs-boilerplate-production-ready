@@ -9,12 +9,13 @@ import {
   Menu,
   ChevronLeft,
   ChevronRight,
-  Globe,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth/auth-context";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { getTranslations } from "@/lib/i18n/get-translations";
 import { useTranslations } from "@/lib/i18n/use-translations";
+import { siteConfig } from "@/lib/config/site";
+import { Logo } from "@/components/logo";
 import { ThemeToggle } from "../theme-toggle";
 import LanguageSwitcher from "../language-switcher";
 import { Button } from "@/components/ui/button";
@@ -76,10 +77,10 @@ const SidebarContent = ({
           isCollapsed ? "justify-center" : "justify-start",
         )}
       >
-        <Globe className="h-5 w-5 shrink-0" />
+        <Logo size={28} className="h-7 w-7" />
         {!isCollapsed && (
           <div className="flex flex-col text-md leading-tight font-semibold whitespace-nowrap">
-            Next.js Boilerplate
+            {siteConfig.appName || siteConfig.title}
           </div>
         )}
       </Link>
