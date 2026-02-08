@@ -139,7 +139,7 @@ export default function RootLayout({
         </ThemeProvider>
         <Analytics />
 
-        {/* Organization Schema - Only render if organization info is filled on app/SEO/app-main-meta-data.json */}
+        {/* Organization Schema - Only render if organization info is filled on lib/config/app-main-meta-data.json */}
         {siteConfig.organization.name && (
           <Script
             id="schema-organization"
@@ -178,7 +178,7 @@ export default function RootLayout({
           />
         )}
 
-        {/* WebApplication Schema - Only render if app info is filled on app/SEO/app-main-meta-data.json */}
+        {/* WebApplication Schema - Only render if app info is filled on lib/config/app-main-meta-data.json */}
         {siteConfig.appName && (
           <Script
             id="schema-webapp"
@@ -230,7 +230,7 @@ export default function RootLayout({
           />
         )}
 
-        {/* WebSite Schema - Only render if domain is set on app/SEO/app-main-meta-data.json */}
+        {/* WebSite Schema - Only render if domain is set on lib/config/app-main-meta-data.json */}
         {baseUrl && (
           <Script
             id="schema-website"

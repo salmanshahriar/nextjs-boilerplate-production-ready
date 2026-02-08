@@ -103,7 +103,7 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
 ### First-time setup
 
 1. Copy `.env.example` to `.env` and set `NEXT_PUBLIC_APP_URL` if you need to override the site URL (e.g. in production).
-2. Edit **`app/seo/app-main-meta-data.json`** — this is the main config for app name, domain, SEO, languages, organization, and theme. Sitemap, robots, and manifest are generated from it.
+2. Edit **`lib/config/app-main-meta-data.json`** — main config for app name, domain, SEO, languages, organization, and theme. Sitemap, robots, and manifest are generated from it.
 3. For **Google sign-in**: set `NEXTAUTH_URL`, `NEXTAUTH_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` in `.env`, then set `NEXT_PUBLIC_GOOGLE_AUTH_ENABLED=true`. See [Google OAuth setup](#google-oauth-setup) below.
 
 ## 📁 Project Structure
@@ -117,8 +117,6 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
 │   │   ├── @user/           # User parallel route
 │   │   │   └── dashboard/   # User dashboard pages
 │   │   └── layout.tsx       # Protected layout with role-based routing
-│   ├── seo/                 # Site & SEO config (single source of truth)
-│   │   └── app-main-meta-data.json
 │   ├── layout.tsx           # Root layout
 │   └── page.tsx             # Landing page
 ├── components/
@@ -126,7 +124,7 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
 │   └── ...                  # Custom components
 ├── locales/                 # Translation files (en.json, bn.json, ar.json)
 ├── lib/
-│   ├── config/              # Central config (site, baseUrl)
+│   ├── config/              # Central config (site, baseUrl, app-main-meta-data.json)
 │   ├── i18n/                # i18n (locales from app-main-meta-data.json)
 │   └── utils.ts
 └── public/                  # Static assets
@@ -136,7 +134,7 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
 
 ### Site & SEO configuration
 
-Edit **`app/seo/app-main-meta-data.json`** to customize app name, domain, SEO, languages, organization, theme. It drives metadata, sitemap, robots, manifest, and i18n locales.
+Edit **`lib/config/app-main-meta-data.json`** to customize app name, domain, SEO, languages, organization, theme. It drives metadata, sitemap, robots, manifest, and i18n locales.
 
 ```json
 {
@@ -247,7 +245,7 @@ Edit **`app/seo/app-main-meta-data.json`** to customize app name, domain, SEO, l
 
 ### Adding a New Language
 
-1. Add **`app/seo/app-main-meta-data.json`** entry:
+1. Add **`lib/config/app-main-meta-data.json`** entry:
    - Append the language code to `languages.supported` (e.g. `"es"`).
    - Add an entry under `languages.locales` (e.g. `"es": { "code": "es", "name": "Spanish", "nativeName": "Español", "locale": "es_ES", "direction": "ltr" }`).
 2. Create **`locales/es.json`** (or your code) with the same structure as `locales/en.json`.

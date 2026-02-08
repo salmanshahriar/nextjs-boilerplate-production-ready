@@ -1,4 +1,4 @@
-import seoData from "../../app/seo/app-main-meta-data.json";
+import seoData from "./app-main-meta-data.json";
 
 export interface SiteConfig {
   appName: string;
