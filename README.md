@@ -17,54 +17,41 @@
 
 ---
 
-## 🎯 Overview
+## Motivation
 
-Stop rebuilding auth, i18n, and SEO from scratch. This boilerplate gives you a **production-ready Next.js app** in one clone: type-safe i18n (with RTL), role-based access, Google sign-in, central config, robots/sitemap/manifest, dark mode, and shadcn/ui. Edit one JSON file and ship.
+Most Next.js starters leave you wiring from scratch. This boilerplate prioritizes **app-ready defaults**: one central config, type-safe i18n with RTL, role-based access, optional Google sign-in, and full SEO (sitemap, robots, manifest). Clone, edit one JSON file, and ship.
 
-## ✨ Features
+## Integrated features
 
-### Core Features
+### Boilerplate
 
-- 🚀 **Next.js 15** - Latest App Router with Server Components
-- 📘 **TypeScript** - Strict mode enabled for type safety
-- 🎨 **Tailwind CSS** - Utility-first styling with sensible defaults
-- 🧩 **shadcn/ui** - Accessible, customizable component library
-- 🌗 **Dark Mode** - System preference detection and manual toggle
+With this template you get:
 
-### Advanced Features
+- [Next.js 15](https://nextjs.org/) - App Router, Server Components, recommended stable 15.x
+- [TypeScript](https://www.typescriptlang.org/) - Strict mode for type safety
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first styling
+- [shadcn/ui](https://ui.shadcn.com/) - Accessible, customizable components (Radix + CVA)
+- [next-themes](https://github.com/pacocoursey/next-themes) - Dark mode with system preference and manual toggle
+- [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) - Lint and format (Tailwind plugin, format on save in `.vscode`)
+- Type-safe i18n - Multi-language with compile-time validation; English, বাংলা, العربية; RTL support
+- [NextAuth.js](https://next-auth.js.org/) - Auth with optional [Google OAuth](https://next-auth.js.org/providers/google) and demo credentials; admin role via `AUTH_ADMIN_EMAILS`
+- Role-based access control - [Next.js 15 parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) for User and Admin; easy to extend
+- Central config - Single [app-main-meta-data.json](lib/config/app-main-meta-data.json) for app name, SEO, languages, organization, theme; drives metadata, sitemap, robots, manifest
+- SEO - Open Graph, Twitter Card, JSON-LD, multi-language meta, dynamic sitemap, canonical URLs
+- [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/react) - Unit and component tests
+- [Playwright](https://playwright.dev/) - E2E tests in `e2e/`; optional WebKit-only for lower disk use
+- [GitHub Actions](https://github.com/features/actions) - Check workflow (lint, format, test, build) and Playwright E2E workflow
+- Health check - `GET /api/health` returns `{ status: "ok" }` for load balancers and Kubernetes probes
 
-- 🌍 **Type-Safe i18n** - Multi-language support with compile-time validation
-  - English, বাংলা (Bengali), and العربية (Arabic) included
-  - RTL layout support for Arabic
-  - Easy addition of new languages
-- 🔐 **Authentication** - NextAuth.js with optional Google OAuth and demo credentials
-  - Sign in with Google (configurable via env)
-  - Admin role via `AUTH_ADMIN_EMAILS` for OAuth users
-  - Fallback email/password for local testing
+### Infrastructure & deployments
 
-- 🔐 **Role-Based Access Control** - Scalable RBAC using Next.js 15 parallel routes
-  - Pre-configured User and Admin roles
-  - Automatic role-based dashboard routing
-  - Easy to extend with additional roles
+#### Vercel
 
-- 📊 **SEO Optimized** - JSON-based configuration system
-  - Open Graph and Twitter Card tags
-  - JSON-LD structured data
-  - Multi-language meta tags
-  - Dynamic sitemap generation
-  - Canonical URLs
+Deploy with [Vercel](https://vercel.com) by clicking the button below:
 
-- 🔧 **ESLint & Prettier** - Lint and format
-  - Next.js 15 and TypeScript rules
-  - Prettier with Tailwind plugin, format on save in VS Code
+[![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/nextjs-boilerplate-production-ready)
 
-- 🧪 **Testing** - Vitest + React Testing Library (unit/component), Playwright (E2E)
-  - Example tests in `components/ui/button.test.tsx`, `lib/utils.test.ts`, `e2e/home.spec.ts`
-  - GitHub Actions: check (lint, format, test, build) and Playwright E2E
-
-- 🏥 **Health check** - `GET /api/health` returns `{ status: "ok" }` for probes
-
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -370,7 +357,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 [![GitHub stars](https://img.shields.io/github/stars/salmanshahriar/nextjs-boilerplate-production-ready?style=social)](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=salmanshahriar/nextjs-boilerplate-production-ready&type=date&legend=bottom-right)](https://www.star-history.com/#salmanshahriar/nextjs-boilerplate-production-ready&type=date&legend=bottom-right)
+[![Star History Chart](https://api.star-history.com/svg?repos=salmanshahriar/nextjs-boilerplate-production-ready&type=date&legend=top-left)](https://www.star-history.com/#salmanshahriar/nextjs-boilerplate-production-ready&type=date&legend=top-left)
 
 [**Star the repo**](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers) · Share with your team · [Contribute](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/blob/main/README.md#-contributing)
 
