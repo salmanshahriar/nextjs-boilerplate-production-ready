@@ -370,7 +370,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 [![GitHub stars](https://img.shields.io/github/stars/salmanshahriar/nextjs-boilerplate-production-ready?style=social)](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=salmanshahriar/nextjs-boilerplate-production-ready&type=date&legend=top-left)](https://www.star-history.com/#salmanshahriar/nextjs-boilerplate-production-ready&type=date&legend=top-left)
+[![Star History Chart](https://api.star-history.com/svg?repos=salmanshahriar/nextjs-boilerplate-production-ready&type=date&legend=bottom-right)](https://www.star-history.com/#salmanshahriar/nextjs-boilerplate-production-ready&type=date&legend=bottom-right)
 
 [**Star the repo**](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers) · Share with your team · [Contribute](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/blob/main/README.md#-contributing)
 
