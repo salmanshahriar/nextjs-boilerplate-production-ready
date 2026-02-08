@@ -21,10 +21,10 @@
 
 Stop rebuilding auth, i18n, and SEO from scratch. This boilerplate gives you a **production-ready Next.js app** in one clone: type-safe i18n (with RTL), role-based access, Google sign-in, central config, robots/sitemap/manifest, dark mode, and shadcn/ui. Edit one JSON file and ship.
 
-
 ## ✨ Features
 
 ### Core Features
+
 - 🚀 **Next.js 15** - Latest App Router with Server Components
 - 📘 **TypeScript** - Strict mode enabled for type safety
 - 🎨 **Tailwind CSS** - Utility-first styling with sensible defaults
@@ -32,11 +32,11 @@ Stop rebuilding auth, i18n, and SEO from scratch. This boilerplate gives you a *
 - 🌗 **Dark Mode** - System preference detection and manual toggle
 
 ### Advanced Features
+
 - 🌍 **Type-Safe i18n** - Multi-language support with compile-time validation
   - English, বাংলা (Bengali), and العربية (Arabic) included
   - RTL layout support for Arabic
   - Easy addition of new languages
-  
 - 🔐 **Authentication** - NextAuth.js with optional Google OAuth and demo credentials
   - Sign in with Google (configurable via env)
   - Admin role via `AUTH_ADMIN_EMAILS` for OAuth users
@@ -78,12 +78,14 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/salmanshahriar/nextjs-boilerplate-production-ready.git
    cd nextjs-boilerplate-production-ready
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    # or
@@ -95,6 +97,7 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
    ```
 
 3. **Run the development server**
+
    ```bash
    npm run dev
    ```
@@ -268,6 +271,7 @@ Edit **`lib/config/app-main-meta-data.json`** to customize app name, domain, SEO
 ### Adding a New Role
 
 1. Create a new parallel route folder:
+
    ```bash
    mkdir -p app/(protected)/@moderator/dashboard
    ```
@@ -276,7 +280,7 @@ Edit **`lib/config/app-main-meta-data.json`** to customize app name, domain, SEO
 
 3. Update `app/(protected)/layout.tsx` to handle the new role:
    ```typescript
-   if (role === 'MODERATOR') return moderator
+   if (role === "MODERATOR") return moderator;
    ```
 
 ## 🧪 Testing
@@ -298,21 +302,21 @@ Edit **`lib/config/app-main-meta-data.json`** to customize app name, domain, SEO
 
 ## 🛠️ Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run lint:fix` | Fix ESLint errors |
-| `npm run test` | Run unit tests (Vitest) |
-| `npm run test:watch` | Run unit tests in watch mode |
-| `npm run test:coverage` | Run unit tests with coverage |
-| `npm run e2e` | Run Playwright E2E tests |
-| `npm run e2e:ui` | Run Playwright with UI |
-| `npm run e2e:webkit` | Run E2E in WebKit (Safari) only |
-| `npm run prettier` | Check formatting |
-| `npm run prettier:fix` | Fix formatting |
+| Command                 | Description                     |
+| ----------------------- | ------------------------------- |
+| `npm run dev`           | Start development server        |
+| `npm run build`         | Build for production            |
+| `npm run start`         | Start production server         |
+| `npm run lint`          | Run ESLint                      |
+| `npm run lint:fix`      | Fix ESLint errors               |
+| `npm run test`          | Run unit tests (Vitest)         |
+| `npm run test:watch`    | Run unit tests in watch mode    |
+| `npm run test:coverage` | Run unit tests with coverage    |
+| `npm run e2e`           | Run Playwright E2E tests        |
+| `npm run e2e:ui`        | Run Playwright with UI          |
+| `npm run e2e:webkit`    | Run E2E in WebKit (Safari) only |
+| `npm run prettier`      | Check formatting                |
+| `npm run prettier:fix`  | Fix formatting                  |
 
 ## 🧪 Tech Stack
 
@@ -358,7 +362,6 @@ Please ensure your code follows the existing ESLint configuration and includes a
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 <br/><br/><br/>
 
-
 <div align="center">
 
 ## ⭐ Show your support
@@ -372,4 +375,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [**Star the repo**](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers) · Share with your team · [Contribute](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/blob/main/README.md#-contributing)
 
 </div>
-
