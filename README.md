@@ -317,14 +317,14 @@ Edit **`lib/config/app-main-meta-data.json`** to customize app name, domain, SEO
 - **Testing:** Vitest, React Testing Library, Playwright
 - **Icons:** Lucide React
 
-## 📝 Use Cases
+## 🧩 Best For
 
-This boilerplate is ideal for:
+Your boilerplate is ideal for:
 
-- ✅ SaaS applications with multiple user types
-- ✅ International applications requiring multi-language support
-- ✅ MVPs that need professional infrastructure
-- ✅ Projects requiring rapid deployment
+- ✅ SaaS applications with multiple user roles
+- ✅ International apps (especially with RTL needs)
+- ✅ Startups needing fast, professional launches
+- ✅ Enterprise projects with auth/role requirements
 
 May not be suitable for:
 
