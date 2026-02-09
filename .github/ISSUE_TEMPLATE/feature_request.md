@@ -4,7 +4,6 @@ about: Suggest an improvement or new capability for this boilerplate
 title: "[Feature] <short summary>"
 labels: enhancement
 assignees: ""
-
 ---
 
 **Summary**
@@ -21,6 +20,7 @@ Other ways you’ve tried to solve this (or why they’re not ideal).
 
 **Areas affected**
 Which parts of the boilerplate are impacted?
+
 - Auth (NextAuth / Google OAuth)
 - i18n / locales
 - RBAC / protected routes
