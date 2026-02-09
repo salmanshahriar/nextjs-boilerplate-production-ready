@@ -1,20 +1,33 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
+about: Suggest an improvement or new capability for this boilerplate
+title: "[Feature] <short summary>"
+labels: enhancement
+assignees: ""
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Summary**
+Short description of the feature you’d like.
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Problem**
+What problem would this feature solve for you? (e.g. “I want easier X when building Y”)
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**Proposed solution**
+How you imagine this working in the boilerplate (APIs, config, UI, examples).
+
+**Alternatives considered**
+Other ways you’ve tried to solve this (or why they’re not ideal).
+
+**Areas affected**
+Which parts of the boilerplate are impacted?
+- Auth (NextAuth / Google OAuth)
+- i18n / locales
+- RBAC / protected routes
+- SEO / config
+- UI / components
+- Testing / CI
+- Other
 
 **Additional context**
-Add any other context or screenshots about the feature request here.
+Any extra details, links, or screenshots that help explain the request.

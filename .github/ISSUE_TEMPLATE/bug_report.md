@@ -1,38 +1,36 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+about: Report a problem with the Next.js boilerplate
+title: "[Bug] <short summary>"
+labels: bug
+assignees: ""
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**What happened?**
+A clear and concise description of the bug.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**Steps to reproduce**
+1. What command did you run to start the app? (e.g. `npm run dev`)
+2. Exact steps you followed
+3. What you saw (including any error messages)
 
 **Expected behavior**
-A clear and concise description of what you expected to happen.
+What you expected to happen instead.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Environment**
+- Boilerplate version / commit: [e.g. `6062ded`]
+- Node.js version: [e.g. 20.x]
+- Package manager: [npm / pnpm / yarn / bun + version]
+- OS: [e.g. macOS 15, Windows 11, Ubuntu 24.04]
+- Browser (if UI-related): [name + version]
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+**Configuration (if relevant)**
+- Any relevant parts of `.env` (without secrets)
+- Any relevant parts of `lib/config/app-main-meta-data.json`
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+**Logs / screenshots**
+Paste relevant logs or screenshots that show the issue.
 
 **Additional context**
-Add any other context about the problem here.
+Anything else that might help understand or reproduce the bug.

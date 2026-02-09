@@ -1,6 +1,6 @@
 <div align="center">
 <h1>Next.js Production-Ready Boilerplate</h1>
-<p><strong>Ship in days, not weeks.</strong> One config. i18n, RBAC, Google OAuth, SEO & More (ready to go).</p>
+<p><strong>Ship in days, not weeks.</strong> One config. i18n, RBAC, Google OAuth, SEO & More (ready to go)</p>
 </div>
 <div align="center">
 
