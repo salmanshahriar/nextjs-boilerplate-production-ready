@@ -26,21 +26,21 @@ Most Next.js starters leave you wiring from scratch. This boilerplate prioritize
 
 With this template you get:
 
-- [Next.js 15](https://nextjs.org/) - App Router, Server Components, recommended stable 15.x
-- [TypeScript](https://www.typescriptlang.org/) - Strict mode for type safety
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first styling
-- [shadcn/ui](https://ui.shadcn.com/) - Accessible, customizable components (Radix + CVA)
+- Central config - Single [app-main-meta-data.json](lib/config/app-main-meta-data.json) for app name, SEO, languages, organization, theme; drives metadata, sitemap, robots, manifest
+- Type-safe i18n - English, বাংলা, العربية with RTL. Example: `t("navigation.home")` is type-checked (invalid keys fail at compile time)
+- Role-based access control - [Next.js 15 parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) for User and Admin. Example: `app/(protected)/@admin/dashboard` and `app/(protected)/@user/dashboard` both map to `/dashboard`, so roles stay hidden from the URL
+- [NextAuth.js](https://next-auth.js.org/) - Auth with optional [Google OAuth](https://next-auth.js.org/providers/google); admin role via `AUTH_ADMIN_EMAILS`
+- SEO - Open Graph, Twitter Card, JSON-LD, multi-language meta, dynamic sitemap, canonical URLs
 - [next-themes](https://github.com/pacocoursey/next-themes) - Dark mode with system preference and manual toggle
 - [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) - Lint and format (Tailwind plugin, format on save in `.vscode`)
-- Type-safe i18n - Multi-language with compile-time validation; English, বাংলা, العربية; RTL support
-- [NextAuth.js](https://next-auth.js.org/) - Auth with optional [Google OAuth](https://next-auth.js.org/providers/google) and demo credentials; admin role via `AUTH_ADMIN_EMAILS`
-- Role-based access control - [Next.js 15 parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) for User and Admin; easy to extend
-- Central config - Single [app-main-meta-data.json](lib/config/app-main-meta-data.json) for app name, SEO, languages, organization, theme; drives metadata, sitemap, robots, manifest
-- SEO - Open Graph, Twitter Card, JSON-LD, multi-language meta, dynamic sitemap, canonical URLs
 - [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/react) - Unit and component tests
 - [Playwright](https://playwright.dev/) - E2E tests in `e2e/`; optional WebKit-only for lower disk use
 - [GitHub Actions](https://github.com/features/actions) - Check workflow (lint, format, test, build) and Playwright E2E workflow
 - Health check - `GET /api/health` returns `{ status: "ok" }` for load balancers and Kubernetes probes
+- [shadcn/ui](https://ui.shadcn.com/) - Accessible, customizable components (Radix + CVA)
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first styling
+- [TypeScript](https://www.typescriptlang.org/) - Strict mode for type safety
+- [Next.js 15](https://nextjs.org/) - App Router, Server Components, recommended stable 15.x
 
 ### Infrastructure & deployments
 
@@ -90,7 +90,6 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
 
 4. **Open your browser** at `http://localhost:3000`
 
-
 ### First-time setup
 
 1. Copy `.env.example` to `.env` and set `NEXT_PUBLIC_APP_URL` if you need to override the site URL (e.g. in production).
@@ -102,27 +101,36 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
 ```
 .
 ├── app/
-│   ├── (protected)/          # Protected routes requiring authentication
-│   │   ├── @admin/          # Admin-only parallel route
-│   │   │   └── dashboard/   # Admin dashboard pages
-│   │   ├── @user/           # User parallel route
-│   │   │   └── dashboard/   # User dashboard pages
-│   │   └── layout.tsx       # Protected layout with role-based routing
-│   ├── api/                  # API routes (auth, health)
-│   ├── auth/login/           # Login page
-│   ├── layout.tsx            # Root layout
-│   └── page.tsx              # Landing page
+│   ├── (protected)/             # Authenticated area with RBAC
+│   │   ├── @admin/              # Admin dashboard
+│   │   ├── @user/               # User dashboard
+│   │   └── layout.tsx           # Chooses segment based on role
+│   ├── api/
+│   │   ├── auth/[...nextauth]/  # NextAuth routes
+│   │   └── health/              # Health check endpoint
+│   ├── auth/login/              # Login page
+│   ├── unauthorized/            # 403 page
+│   ├── about/                   # About page
+│   ├── layout.tsx               # Root layout (providers, SEO, theme, i18n)
+│   ├── error.tsx                # Global error boundary
+│   ├── not-found.tsx            # 404 page
+│   ├── manifest.ts              # Web manifest from config
+│   ├── robots.ts                # robots.txt from config
+│   └── sitemap.ts               # Sitemap from config
 ├── components/
-│   ├── ui/                  # shadcn/ui components
-│   └── ...                  # Custom components
-├── locales/                 # Translation files (en.json, bn.json, ar.json)
+│   ├── ui/                      # shadcn/ui components
+│   └── ...                      # Layout + shared components
+├── locales/                     # Translation files (en.json, bn.json, ar.json)
 ├── lib/
-│   ├── config/              # Central config (site, baseUrl, app-main-meta-data.json)
-│   ├── i18n/                # i18n (locales from app-main-meta-data.json)
-│   └── utils.ts
-├── e2e/                     # Playwright E2E tests
-├── .github/workflows/        # CI (check.yml, playwright.yml)
-└── public/                  # Static assets
+│   ├── auth/                    # Auth context, NextAuth options, types
+│   ├── config/                  # Central config (site, app-main-meta-data.json)
+│   ├── i18n/                    # i18n config, hooks, types
+│   ├── env.ts                   # Env validation (Zod)
+│   ├── schemas.ts               # Example Zod schemas for API responses
+│   └── utils.ts                 # Helpers (+ tests)
+├── e2e/                         # Playwright E2E tests
+├── .github/workflows/           # CI (check.yml, playwright.yml)
+└── public/                     # Static assets (favicon, og image, etc.)
 ```
 
 ## ⚙️ Configuration
@@ -146,94 +154,18 @@ Edit **`lib/config/app-main-meta-data.json`** to customize app name, domain, SEO
   "audience": "Developers, Businesses",
   "keywords": ["nextjs", "i18n", "rbac", "boilerplate", "multilanguage"],
   "features": ["Multi-language Support", "Role-Based Access Control", "Production Ready"],
-
   "languages": {
     "supported": ["en", "bn", "ar"],
     "default": "en",
-    "locales": {
-      "en": {
-        "code": "en",
-        "name": "English",
-        "nativeName": "English",
-        "locale": "en_US",
-        "direction": "ltr"
-      },
-      "bn": {
-        "code": "bn",
-        "name": "Bengali",
-        "nativeName": "বাংলা",
-        "locale": "bn_BD",
-        "direction": "ltr"
-      },
-      "ar": {
-        "code": "ar",
-        "name": "Arabic",
-        "nativeName": "العربية",
-        "locale": "ar_SA",
-        "direction": "rtl"
-      }
-    }
+    "locales": { "...": "..." }
   },
-
-  "organization": {
-    "name": "Your Organization",
-    "legalName": "Your Organization Legal Name",
-    "url": "https://yourdomain.com",
-    "logo": "/logo.png",
-    "description": "Your organization description",
-    "foundingDate": "2024-01-01",
-    "email": "contact@yourdomain.com",
-    "phone": "+1-234-567-8900",
-    "address": {
-      "street": "123 Main Street",
-      "city": "New York",
-      "region": "NY",
-      "postalCode": "10001",
-      "country": "United States",
-      "countryCode": "US"
-    }
-  },
-
-  "contact": {
-    "supportEmail": "support@yourdomain.com",
-    "salesEmail": "sales@yourdomain.com",
-    "phoneNumber": "+1-234-567-8900"
-  },
-
-  "social": {
-    "facebook": "https://facebook.com/yourpage",
-    "twitter": "@yourhandle",
-    "linkedin": "https://linkedin.com/company/yourcompany",
-    "instagram": "https://instagram.com/yourhandle",
-    "youtube": "https://youtube.com/@yourchannel",
-    "github": "https://github.com/yourusername"
-  },
-
-  "images": {
-    "og": "/og-image.png",
-    "logo": "/logo.png",
-    "ogWidth": 1200,
-    "ogHeight": 630
-  },
-
-  "icons": {
-    "favicon": "/favicon.ico",
-    "svg": "/icon.svg",
-    "appleTouchIcon": "/apple-touch-icon.png"
-  },
-
-  "theme": {
-    "dark": "#000000",
-    "light": "#ffffff"
-  },
-
-  "pricing": {
-    "model": "freemium",
-    "currency": "USD",
-    "minPrice": "0",
-    "maxPrice": "99"
-  },
-
+  "organization": { "...": "..." },
+  "contact": { "...": "..." },
+  "social": { "...": "..." },
+  "images": { "...": "..." },
+  "icons": { "...": "..." },
+  "theme": { "...": "..." },
+  "pricing": { "...": "..." },
   "manifest": "/manifest.webmanifest"
 }
 ```
@@ -245,6 +177,15 @@ Edit **`lib/config/app-main-meta-data.json`** to customize app name, domain, SEO
    - Add an entry under `languages.locales` (e.g. `"es": { "code": "es", "name": "Spanish", "nativeName": "Español", "locale": "es_ES", "direction": "ltr" }`).
 2. Create **`locales/es.json`** (or your code) with the same structure as `locales/en.json`.
 3. In **`lib/i18n/get-translations.ts`**, import the new file and add it to the `translations` object. Add the new key to the `TranslationKeys` union in **`lib/i18n/types.ts`** if you use strict keys.
+
+Type-safe usage example:
+
+```ts
+const { t } = useTranslations(messages);
+
+t("navigation.home");
+// t("navigation.homer"); // invalid key (type error)
+```
 
 ### Google OAuth setup
 
@@ -265,8 +206,10 @@ Edit **`lib/config/app-main-meta-data.json`** to customize app name, domain, SEO
 
 3. Update `app/(protected)/layout.tsx` to handle the new role:
    ```typescript
-   if (role === "MODERATOR") return moderator;
+   if (currentUser?.role === "moderator") return moderator;
    ```
+
+Your URL stays clean. Even with parallel routes like `app/(protected)/@admin/dashboard`, the user still visits `/dashboard` (the role is not exposed in the path).
 
 ## 🧪 Testing
 
