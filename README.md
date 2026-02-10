@@ -91,7 +91,6 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
 
 4. **Open your browser** at `http://localhost:3000`
 
-**Like it?** [Star the repo](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready) — it helps others find it.
 
 ### First-time setup
 
