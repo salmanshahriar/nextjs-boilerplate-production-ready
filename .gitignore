@@ -26,3 +26,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# testing artifacts
+/coverage/
+/playwright-report/
+/test-results/
+/.vitest/
