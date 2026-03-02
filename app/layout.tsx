@@ -26,34 +26,34 @@ export const metadata: Metadata = {
   category: siteConfig.applicationCategory || undefined,
   openGraph: siteConfig.appName
     ? {
-      type: "website",
-      locale: siteConfig.locale,
-      url: baseUrl,
-      title: `${siteConfig.appName} | ${siteConfig.tagline}`,
-      description: siteConfig.description,
-      siteName: siteConfig.appName,
-      images: siteConfig.images.og
-        ? [
-          {
-            url: siteConfig.images.og,
-            width: siteConfig.images.ogWidth,
-            height: siteConfig.images.ogHeight,
-            alt: `${siteConfig.appName} - ${siteConfig.tagline}`,
-          },
-        ]
-        : undefined,
-    }
+        type: "website",
+        locale: siteConfig.locale,
+        url: baseUrl,
+        title: `${siteConfig.appName} | ${siteConfig.tagline}`,
+        description: siteConfig.description,
+        siteName: siteConfig.appName,
+        images: siteConfig.images.og
+          ? [
+              {
+                url: siteConfig.images.og,
+                width: siteConfig.images.ogWidth,
+                height: siteConfig.images.ogHeight,
+                alt: `${siteConfig.appName} - ${siteConfig.tagline}`,
+              },
+            ]
+          : undefined,
+      }
     : undefined,
   twitter: siteConfig.social.twitter
     ? {
-      card: "summary_large_image",
-      title: siteConfig.appName
-        ? `${siteConfig.appName} | ${siteConfig.tagline}`
-        : siteConfig.title,
-      description: siteConfig.description,
-      images: siteConfig.images.og ? [siteConfig.images.og] : undefined,
-      creator: siteConfig.social.twitter,
-    }
+        card: "summary_large_image",
+        title: siteConfig.appName
+          ? `${siteConfig.appName} | ${siteConfig.tagline}`
+          : siteConfig.title,
+        description: siteConfig.description,
+        images: siteConfig.images.og ? [siteConfig.images.og] : undefined,
+        creator: siteConfig.social.twitter,
+      }
     : undefined,
   icons: {
     icon: [
@@ -153,13 +153,13 @@ const RootLayout = ({
                 sameAs: Object.values(siteConfig.social).filter(Boolean),
                 address: siteConfig.organization.address.city
                   ? {
-                    "@type": "PostalAddress",
-                    streetAddress: siteConfig.organization.address.street,
-                    addressLocality: siteConfig.organization.address.city,
-                    addressRegion: siteConfig.organization.address.region,
-                    postalCode: siteConfig.organization.address.postalCode,
-                    addressCountry: siteConfig.organization.address.countryCode,
-                  }
+                      "@type": "PostalAddress",
+                      streetAddress: siteConfig.organization.address.street,
+                      addressLocality: siteConfig.organization.address.city,
+                      addressRegion: siteConfig.organization.address.region,
+                      postalCode: siteConfig.organization.address.postalCode,
+                      addressCountry: siteConfig.organization.address.countryCode,
+                    }
                   : undefined,
               }),
             }}
@@ -187,26 +187,26 @@ const RootLayout = ({
                 operatingSystem: "Web Browser",
                 offers: siteConfig.pricing.model
                   ? {
-                    "@type": "Offer",
-                    price: siteConfig.pricing.minPrice || "0",
-                    priceCurrency: siteConfig.pricing.currency,
-                    priceSpecification: siteConfig.pricing.maxPrice
-                      ? {
-                        "@type": "PriceSpecification",
-                        minPrice: siteConfig.pricing.minPrice,
-                        maxPrice: siteConfig.pricing.maxPrice,
-                        priceCurrency: siteConfig.pricing.currency,
-                      }
-                      : undefined,
-                  }
+                      "@type": "Offer",
+                      price: siteConfig.pricing.minPrice || "0",
+                      priceCurrency: siteConfig.pricing.currency,
+                      priceSpecification: siteConfig.pricing.maxPrice
+                        ? {
+                            "@type": "PriceSpecification",
+                            minPrice: siteConfig.pricing.minPrice,
+                            maxPrice: siteConfig.pricing.maxPrice,
+                            priceCurrency: siteConfig.pricing.currency,
+                          }
+                        : undefined,
+                    }
                   : undefined,
                 aggregateRating: undefined, // Can be added later with actual ratings
                 author: siteConfig.organization.name
                   ? {
-                    "@type": "Organization",
-                    "@id": `${baseUrl}/#organization`,
-                    name: siteConfig.organization.name,
-                  }
+                      "@type": "Organization",
+                      "@id": `${baseUrl}/#organization`,
+                      name: siteConfig.organization.name,
+                    }
                   : undefined,
                 featureList: siteConfig.features.filter(Boolean),
                 screenshot: siteConfig.images.og ? `${baseUrl}${siteConfig.images.og}` : undefined,
@@ -230,8 +230,8 @@ const RootLayout = ({
                 description: siteConfig.description,
                 publisher: siteConfig.organization.name
                   ? {
-                    "@id": `${baseUrl}/#organization`,
-                  }
+                      "@id": `${baseUrl}/#organization`,
+                    }
                   : undefined,
                 potentialAction: {
                   "@type": "SearchAction",
@@ -258,8 +258,8 @@ const RootLayout = ({
                 description: siteConfig.description,
                 provider: siteConfig.organization.name
                   ? {
-                    "@id": `${baseUrl}/#organization`,
-                  }
+                      "@id": `${baseUrl}/#organization`,
+                    }
                   : undefined,
                 serviceType: siteConfig.appType,
                 areaServed: "Worldwide",

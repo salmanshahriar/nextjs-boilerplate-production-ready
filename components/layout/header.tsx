@@ -15,7 +15,7 @@ import { ThemeToggle } from "../theme-toggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const Header = (props: unknown) => {
+const Header = () => {
   const { locale } = useLanguage();
   const { user, logout } = useAuth();
   const pathname = usePathname();
